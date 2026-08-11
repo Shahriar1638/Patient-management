@@ -39,7 +39,7 @@ function InfoItem({ label, value }: { label: string; value: string }) {
 
 export function PatientInfoSheet() {
   return (
-    <div className="flex flex-col gap-6 p-6 sm:p-9">
+    <div className="flex min-h-[260mm] flex-col gap-6 p-6 sm:p-9">
       <SheetHeader recordNo={patient.id.toUpperCase()} />
 
       {/* Identity */}

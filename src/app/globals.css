@@ -184,6 +184,8 @@
   .print-reset {
     position: static !important;
     max-height: none !important;
+    height: auto !important;
+    width: auto !important;
     overflow: visible !important;
     padding: 0 !important;
     margin: 0 !important;

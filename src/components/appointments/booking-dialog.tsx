@@ -53,7 +53,12 @@ export function BookingDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto">
+      {/* Inline maxWidth: shadcn's sm:max-w-sm default (384px) would otherwise
+          squeeze this dialog on desktop. */}
+      <DialogContent
+        className="max-h-[90vh] overflow-y-auto"
+        style={{ maxWidth: "min(42rem, calc(100vw - 2rem))" }}
+      >
         <DialogHeader>
           <DialogTitle className="font-heading text-headline-md">
             Select Appointment Slot

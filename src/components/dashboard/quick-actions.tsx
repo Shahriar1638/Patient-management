@@ -1,16 +1,14 @@
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import { CalendarPlus, FileText, UserRound } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { ProfileDialog } from "@/components/dashboard/profile-dialog"
+import { A4DocumentDialog } from "@/components/documents/a4-document-dialog"
+import { PatientInfoSheet } from "@/components/documents/patient-info-sheet"
 
 export function QuickActions() {
-  const [profileOpen, setProfileOpen] = useState(false)
-
   return (
     <Card className="col-span-1 md:col-span-4">
       <CardContent className="flex flex-col gap-4">
@@ -23,15 +21,18 @@ export function QuickActions() {
             Book Appointment
           </Link>
         </Button>
-        <Button
-          size="lg"
-          variant="outline"
-          className="h-12 w-full"
-          onClick={() => setProfileOpen(true)}
+        <A4DocumentDialog
+          title="Patient Information Report"
+          description="Your full patient health record, ready to print on A4."
+          trigger={
+            <Button size="lg" variant="outline" className="h-12 w-full">
+              <UserRound data-icon="inline-start" />
+              My Profile
+            </Button>
+          }
         >
-          <UserRound data-icon="inline-start" />
-          My Profile
-        </Button>
+          <PatientInfoSheet />
+        </A4DocumentDialog>
         <Button asChild variant="link" className="h-auto w-fit px-0">
           <Link href="/records">
             <FileText data-icon="inline-start" />
@@ -39,7 +40,6 @@ export function QuickActions() {
           </Link>
         </Button>
       </CardContent>
-      <ProfileDialog open={profileOpen} onOpenChange={setProfileOpen} />
     </Card>
   )
 }
