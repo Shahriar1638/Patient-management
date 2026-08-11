@@ -12,6 +12,9 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { A4DocumentDialog } from "@/components/documents/a4-document-dialog"
+import { DoctorVisitSheet } from "@/components/documents/doctor-visit-sheet"
+import { LabReportSheet } from "@/components/documents/lab-report-sheet"
 import { labIconByType, labStatusLabel } from "@/lib/lab-reports"
 import records from "@/data/records.json"
 
@@ -99,14 +102,21 @@ export default function RecordsPage() {
                         </Badge>
                       </TableCell>
                       <TableCell className="text-right">
-                        <Button
-                          variant="ghost"
-                          size="icon-sm"
-                          aria-label={`Download ${row.diagnosis} PDF`}
-                          className="text-primary"
+                        <A4DocumentDialog
+                          title="Doctor Visit Report"
+                          trigger={
+                            <Button
+                              variant="ghost"
+                              size="icon-sm"
+                              aria-label={`Download ${row.diagnosis} PDF`}
+                              className="text-primary"
+                            >
+                              <Download />
+                            </Button>
+                          }
                         >
-                          <Download />
-                        </Button>
+                          <DoctorVisitSheet row={row} />
+                        </A4DocumentDialog>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -154,14 +164,22 @@ export default function RecordsPage() {
                         <FileText data-icon="inline-start" />
                         View Full Result
                       </Button>
-                      <Button
-                        variant="outline"
-                        size="lg"
-                        aria-label={`Download ${lab.title}`}
-                        className="font-medium uppercase tracking-wide text-primary"
+                      <A4DocumentDialog
+                        title="Lab Report"
+                        description="Your diagnostic report, ready to print on A4."
+                        trigger={
+                          <Button
+                            variant="outline"
+                            size="lg"
+                            aria-label={`Download ${lab.title}`}
+                            className="font-medium uppercase tracking-wide text-primary"
+                          >
+                            <Download />
+                          </Button>
+                        }
                       >
-                        <Download />
-                      </Button>
+                        <LabReportSheet lab={lab} />
+                      </A4DocumentDialog>
                     </div>
                   </CardContent>
                 </Card>

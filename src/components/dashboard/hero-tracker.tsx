@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { ChevronRight, Download } from "lucide-react"
-import { toast } from "sonner"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -13,6 +12,8 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import { cn } from "@/lib/utils"
+import { A4DocumentDialog } from "@/components/documents/a4-document-dialog"
+import { SerialTicketSheet } from "@/components/documents/serial-ticket-sheet"
 import queue from "@/data/queue.json"
 
 export function HeroTracker() {
@@ -28,19 +29,22 @@ export function HeroTracker() {
               Live Serial Tracker
             </span>
             <div className="flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="h-7 text-primary-foreground/80 hover:bg-white/10 hover:text-primary-foreground"
-                onClick={() =>
-                  toast.success(
-                    `Serial ticket #${queue.serial} is ready to print.`
-                  )
+              <A4DocumentDialog
+                title="Serial Ticket"
+                description="Your outpatient serial ticket, ready to print on A4."
+                trigger={
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-7 text-primary-foreground/80 hover:bg-white/10 hover:text-primary-foreground"
+                  >
+                    <Download data-icon="inline-start" />
+                    Serial Ticket
+                  </Button>
                 }
               >
-                <Download data-icon="inline-start" />
-                Serial Ticket
-              </Button>
+                <SerialTicketSheet />
+              </A4DocumentDialog>
               <Badge
                 variant="outline"
                 className="border-white/30 bg-white/10 text-primary-foreground"

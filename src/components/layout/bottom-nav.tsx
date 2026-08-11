@@ -2,7 +2,13 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { CalendarDays, FolderOpen, LayoutDashboard, Pill } from "lucide-react"
+import {
+  CalendarDays,
+  FolderOpen,
+  LayoutDashboard,
+  PanelsTopLeft,
+  Pill,
+} from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
@@ -11,6 +17,7 @@ const bottomNavItems = [
   { title: "Bookings", href: "/appointments", icon: CalendarDays },
   { title: "Records", href: "/records", icon: FolderOpen },
   { title: "Inventory", href: "/inventory", icon: Pill },
+  { title: "Pages", href: "/pages", icon: PanelsTopLeft },
 ]
 
 export function BottomNav() {
@@ -25,7 +32,7 @@ export function BottomNav() {
             key={item.href}
             href={item.href}
             className={cn(
-              "flex w-16 flex-col items-center gap-1 transition-colors",
+              "flex min-w-0 flex-1 flex-col items-center gap-1 transition-colors",
               active
                 ? "text-primary"
                 : "text-muted-foreground hover:text-foreground"

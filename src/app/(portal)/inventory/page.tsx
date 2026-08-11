@@ -10,6 +10,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { A4DocumentDialog } from "@/components/documents/a4-document-dialog"
+import { PrescriptionSheet } from "@/components/documents/prescription-sheet"
 import inventory from "@/data/inventory.json"
 
 const statusVariant: Record<string, "default" | "destructive" | "outline"> = {
@@ -36,10 +38,18 @@ export default function InventoryPage() {
             Dr. Sarah Jenkins - Cardiology
           </p>
         </div>
-        <Button variant="outline" size="lg" className="w-fit gap-2 font-medium">
-          <Download data-icon="inline-start" />
-          Download Prescription PDF
-        </Button>
+        <A4DocumentDialog
+          title="Prescription"
+          description="Your prescribed medicines, ready to print on A4."
+          trigger={
+            <Button variant="outline" size="lg" className="w-fit gap-2 font-medium">
+              <Download data-icon="inline-start" />
+              Download Prescription PDF
+            </Button>
+          }
+        >
+          <PrescriptionSheet />
+        </A4DocumentDialog>
       </div>
       <Card className="flex flex-col gap-6">
         <CardContent className="flex flex-col gap-2 border-b border-border pb-6">
