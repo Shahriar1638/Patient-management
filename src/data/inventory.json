@@ -1,0 +1,86 @@
+[
+  {
+    "id": "med-001",
+    "name": "Amoxil 500mg",
+    "genericName": "Amoxicillin",
+    "category": "Antibiotics",
+    "dosage": "1+0+1 after meals",
+    "prescribedBy": "Dr. Sarah Jenkins",
+    "price": 12.5,
+    "discount": "10% Off",
+    "stock": 320,
+    "status": "in-stock"
+  },
+  {
+    "id": "med-002",
+    "name": "Prinivil 10mg",
+    "genericName": "Lisinopril",
+    "category": "Cardiovascular",
+    "dosage": "1+0+0 morning",
+    "prescribedBy": "Dr. Sarah Jenkins",
+    "price": 8.0,
+    "discount": "No Discount",
+    "stock": 24,
+    "status": "low-stock"
+  },
+  {
+    "id": "med-003",
+    "name": "Glucophage 850mg",
+    "genericName": "Metformin",
+    "category": "Antidiabetic",
+    "dosage": "1+0+1 with meals",
+    "prescribedBy": "Dr. Julian Martínez",
+    "price": 7.2,
+    "discount": "5% Off",
+    "stock": 180,
+    "status": "in-stock"
+  },
+  {
+    "id": "med-004",
+    "name": "Lipitor 20mg",
+    "genericName": "Atorvastatin",
+    "category": "Cardiovascular",
+    "dosage": "0+0+1 evening",
+    "prescribedBy": "Dr. Sarah Jenkins",
+    "price": 15.0,
+    "discount": "No Discount",
+    "stock": 0,
+    "status": "out-of-stock"
+  },
+  {
+    "id": "med-005",
+    "name": "Ventolin HFA",
+    "genericName": "Albuterol sulfate",
+    "category": "Respiratory",
+    "dosage": "2 puffs as needed, every 4-6 hrs",
+    "prescribedBy": "Dr. Robert Kim",
+    "price": 22.4,
+    "discount": "15% Off",
+    "stock": 96,
+    "status": "in-stock"
+  },
+  {
+    "id": "med-006",
+    "name": "Synthroid 75mcg",
+    "genericName": "Levothyroxine sodium",
+    "category": "Endocrine",
+    "dosage": "1+0+0 before breakfast",
+    "prescribedBy": "Dr. Julian Martínez",
+    "price": 9.8,
+    "discount": "No Discount",
+    "stock": 58,
+    "status": "in-stock"
+  },
+  {
+    "id": "med-007",
+    "name": "Zyrtec 10mg",
+    "genericName": "Cetirizine",
+    "category": "Antihistamine",
+    "dosage": "0+0+1 bedtime",
+    "prescribedBy": "Dr. Grace Adebayo",
+    "price": 4.5,
+    "discount": "20% Off",
+    "stock": 11,
+    "status": "low-stock"
+  }
+]

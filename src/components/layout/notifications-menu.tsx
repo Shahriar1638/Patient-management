@@ -12,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Badge } from "@/components/ui/badge"
 import notifications from "@/data/notifications.json"
 
 const iconByType: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -28,7 +29,7 @@ export function NotificationsMenu() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant="ghost"
+          variant="outline"
           size="icon-lg"
           aria-label="Notifications"
           className="relative rounded-full"

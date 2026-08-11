@@ -10,7 +10,12 @@
     "departmentId": "dept-cardio",
     "room": "A-204",
     "availability": ["Monday", "Wednesday", "Friday"],
-    "patientsCount": 128
+    "patientsCount": 128,
+    "rating": 4.9,
+    "clinic": "HeartCare General Hospital",
+    "fee": 150,
+    "nextAvailable": "Today, 2:30 PM",
+    "videoConsult": true
   },
   {
     "id": "doc-002",
@@ -23,7 +28,12 @@
     "departmentId": "dept-endo",
     "room": "B-118",
     "availability": ["Tuesday", "Thursday", "Saturday"],
-    "patientsCount": 96
+    "patientsCount": 96,
+    "rating": 4.8,
+    "clinic": "City Brain & Spine Center",
+    "fee": 180,
+    "nextAvailable": "Tomorrow, 10:00 AM",
+    "videoConsult": false
   },
   {
     "id": "doc-003",
@@ -36,7 +46,12 @@
     "departmentId": "dept-gp",
     "room": "A-103",
     "availability": ["Monday", "Tuesday", "Thursday"],
-    "patientsCount": 210
+    "patientsCount": 210,
+    "rating": 4.7,
+    "clinic": "Meridian Wellness Clinic",
+    "fee": 95,
+    "nextAvailable": "Today, 4:00 PM",
+    "videoConsult": true
   },
   {
     "id": "doc-004",
@@ -49,7 +64,12 @@
     "departmentId": "dept-pulm",
     "room": "C-305",
     "availability": ["Wednesday", "Friday"],
-    "patientsCount": 74
+    "patientsCount": 74,
+    "rating": 4.9,
+    "clinic": "Pulmonary Care Institute",
+    "fee": 165,
+    "nextAvailable": "Thu, 9:00 AM",
+    "videoConsult": true
   },
   {
     "id": "doc-005",
@@ -62,6 +82,11 @@
     "departmentId": "dept-derm",
     "room": "B-212",
     "availability": ["Monday", "Thursday", "Friday"],
-    "patientsCount": 152
+    "patientsCount": 152,
+    "rating": 4.6,
+    "clinic": "DermaCare Studio",
+    "fee": 120,
+    "nextAvailable": "Fri, 11:30 AM",
+    "videoConsult": false
   }
 ]

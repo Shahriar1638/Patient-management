@@ -1,5 +1,4 @@
 import {
-  Activity,
   CalendarDays,
   FolderOpen,
   LayoutDashboard,
@@ -11,7 +10,6 @@ export const navItems = [
   { title: "Dashboard", href: "/", icon: LayoutDashboard },
   { title: "Book Appointment", href: "/appointments", icon: CalendarDays },
   { title: "Medical Records", href: "/records", icon: FolderOpen },
-  { title: "Serial Tracker", href: "/tracking", icon: Activity },
   { title: "Medicine Inventory", href: "/inventory", icon: Pill },
 ]
 

@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { HeartPulse, LifeBuoy } from "lucide-react"
+import { LifeBuoy } from "lucide-react"
 
 import {
   Sidebar,
@@ -10,7 +10,6 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -24,17 +23,7 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="none" className="hidden md:flex">
-      <SidebarHeader>
-        <Link href="/" className="flex items-center gap-3 px-2 py-1">
-          <span className="flex size-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <HeartPulse className="size-5" />
-          </span>
-          <span className="font-heading text-lg font-semibold text-foreground">
-            MedCare
-          </span>
-        </Link>
-      </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="pt-6">
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>

@@ -1,0 +1,19 @@
+{
+  "doctorId": "doc-001",
+  "dates": [
+    { "day": "Mon", "date": "12", "month": "Aug" },
+    { "day": "Tue", "date": "13", "month": "Aug" },
+    { "day": "Wed", "date": "14", "month": "Aug" }
+  ],
+  "slots": [
+    { "time": "09:00 AM", "period": "morning", "booked": false },
+    { "time": "09:30 AM", "period": "morning", "booked": false },
+    { "time": "10:00 AM", "period": "morning", "booked": true },
+    { "time": "10:30 AM", "period": "morning", "booked": false },
+    { "time": "11:00 AM", "period": "morning", "booked": true },
+    { "time": "02:00 PM", "period": "afternoon", "booked": false },
+    { "time": "02:30 PM", "period": "afternoon", "booked": false },
+    { "time": "03:00 PM", "period": "afternoon", "booked": true },
+    { "time": "03:30 PM", "period": "afternoon", "booked": false }
+  ]
+}

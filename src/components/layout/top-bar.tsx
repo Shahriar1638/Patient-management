@@ -1,30 +1,40 @@
+import Link from "next/link"
 import { HeartPulse } from "lucide-react"
 
 import { NotificationsMenu } from "@/components/layout/notifications-menu"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { getInitials } from "@/lib/utils"
+import patients from "@/data/patients.json"
+
+const patient = patients[0]
 
 export function TopBar() {
   return (
-    <header className="sticky top-0 z-40 flex h-20 items-center justify-between border-b border-border bg-background px-4 md:border-b-0 md:bg-transparent md:px-8">
-      <div className="flex flex-col">
-        <span className="flex items-center gap-2 font-heading text-xl font-semibold md:hidden">
-          <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <HeartPulse className="size-4" />
-          </span>
+    <header className="sticky top-0 z-40 flex h-20 items-center justify-between gap-4 border-b border-border bg-background px-4 shadow-sm md:px-8">
+      <Link href="/" className="flex items-center gap-3">
+        <span className="flex size-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+          <HeartPulse className="size-5" />
+        </span>
+        <span className="font-heading text-xl font-bold text-primary">
           MedCare
+          <span className="hidden md:inline">&nbsp;Portal</span>
         </span>
-        <span className="hidden font-heading text-2xl font-semibold text-foreground md:inline-block">
-          Good morning, Alex.
-        </span>
-      </div>
-      <div className="flex items-center gap-4">
+      </Link>
+      <div className="flex items-center gap-3 md:gap-4">
         <NotificationsMenu />
-        <Avatar className="hidden size-8 bg-primary text-primary-foreground md:flex">
-          <AvatarFallback className="font-body-md font-medium">A</AvatarFallback>
+        <div className="hidden text-right sm:block">
+          <p className="text-label-caps uppercase tracking-widest text-muted-foreground">
+            Welcome back,
+          </p>
+          <p className="text-body-md font-semibold text-foreground">
+            {patient.firstName} {patient.lastName}
+          </p>
+        </div>
+        <Avatar className="size-10 rounded-full border border-border">
+          <AvatarFallback className="bg-primary text-body-md font-semibold text-primary-foreground">
+            {getInitials(patient.firstName, patient.lastName)}
+          </AvatarFallback>
         </Avatar>
-        <span className="flex md:hidden size-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
-          <span className="font-body-md font-medium">A</span>
-        </span>
       </div>
     </header>
   )

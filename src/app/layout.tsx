@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Epilogue, Geist_Mono, Inter } from "next/font/google";
+import { Toaster } from "sonner";
+
+import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 
 const inter = Inter({
@@ -28,7 +31,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${inter.variable} ${epilogue.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <TooltipProvider delayDuration={0}>{children}</TooltipProvider>
+        <Toaster position="top-center" />
+      </body>
     </html>
   );
 }

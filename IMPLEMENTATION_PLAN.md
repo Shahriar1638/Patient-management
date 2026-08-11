@@ -2,7 +2,23 @@
 
 > Build: **Next.js 16 (App Router, RSC) + Tailwind CSS v4 + shadcn/ui (Radix base, Nova style, Lucide icons)**
 > Design system: `DESIGN.md` ("Clinical Editorial") — tokens already applied in `src/app/globals.css` + `src/app/layout.tsx`
-> Mock data: `src/data/*.json` (patients, doctors, appointments, prescriptions, vitals, notifications)
+> Mock data: `src/data/*.json` (patients, doctors, appointments, prescriptions, vitals, notifications, queue, inventory, records, slots)
+> Acceptance criteria: `VERIFY.md` — every item below maps 1:1 to that checklist
+
+---
+
+## 0. Progress summary
+
+| Phase | Status |
+| --- | --- |
+| 0 — Prep (shadcn init, theme tokens, fonts, mock JSONs) | ✅ Done |
+| 1 — Shell (sidebar, top bar, bottom nav, notifications) | ✅ Done |
+| 2 — Dashboard | ✅ Done — incl. Ready Reports widget, My Profile dialog, export actions |
+| 3 — Book Appointment | ✅ Done — incl. day filter, doctor degrees, visiting hours & room |
+| 4 — Medical Records | ✅ Done — incl. VERIFY tab names, specialty, lab status + order ID + download |
+| 5 — Serial Tracker | 🗑️ Removed — tracking lives in the Dashboard hero tracker (`/`); dedicated page + nav removed |
+| 6 — Medicine Inventory | ✅ Done — incl. generic name, dosage instructions, prescribing doctor |
+| 7 — Polish & verify | ⏳ Pending — `npm run lint` + `npm run build` + cross-check vs `VERIFY.md` |
 
 ---
 
@@ -15,173 +31,125 @@ Five screens, one shared shell. Single user (patient), no auth, no backend — p
 | 1 | **Dashboard** | `patient_dashboard_synchronized` |
 | 2 | **Book Appointment** | `book_appointment_enhanced_cards` |
 | 3 | **Medical Records** | `medical_records_editorial` |
-| 4 | **Serial Tracker** | `serial_tracker_mobile` |
-| 5 | **Medicine Inventory** | `medicine_inventory_updated` |
+| 4 | **Medicine Inventory** | `medicine_inventory_updated` |
 
-### Features per screen
-
-**Dashboard** (`/`)
-
-- Greeting header ("Good morning, Alex.") + notification bell (unread dot)
-- Reminder banner (dismissible) — upcoming appointment
-- Bento grid:
-  - **Hero Tracker card** (deep teal `primary-container`): label-caps "Live Serial Tracker", waiting badge, display-hero serial `#16`, collapsible details (doctor / schedule / room), footer strip with *Current Serving #11* + *Estimated Wait ~25 mins*
-  - **Quick Actions**: primary "Book Appointment" → `/appointments`, outline "View Records" → `/records`
-  - **Recent Activity** list: past visits with download icons
-
-**Book Appointment** (`/appointments`)
-
-- Search + filter bar: doctor/clinic search, specialty select, location, fee range (min–max), Apply Filters
-- Quick filters: "Available Today", "Video Consultation" (checkboxes)
-- Doctor card grid (2-col): photo, name, specialty, rating badge, clinic, "Next Available", fee; actions: View Profile (outline), Book Now (primary)
-- **Booking dialog**: available-date pills, Morning/Afternoon slot grids (disabled / selected states), footer with selected slot summary + Confirm Booking
-
-**Medical Records** (`/records`)
-
-- Tabs: **Digital Rx Vault** (table: Date, Doctor, Diagnosis, Status badge, Download action) | **Lab Test Results** (cards: icon, date, title, description, View Full Result)
-
-**Serial Tracker** (`/tracking`)
-
-- Hero tracker card: live-status label + pulsing dot, display-hero "Your Serial #16", "Currently Serving #12", wait-time block
-- Chamber details card: room + floor, map placeholder with "View Interactive Map" overlay chip
-- Alerts card: SMS toggle switch ("Notify me when #15 is called")
-
-**Medicine Inventory** (`/inventory`)
-
-- Header with doctor line ("Dr. Sarah Jenkins — Cardiology") + "Download Prescription PDF" outline button
-- Inventory table: Medication Name, Category, Price, Offers/Discounts, Status badge (In Stock / Low Stock / Out of Stock)
-
-**Shared shell**
-
-- Desktop: fixed left sidebar (logo, nav: Dashboard / Book Appointment / Medical Records / Serial Tracking / Medicine Inventory / Settings, Support button)
-- Mobile: top bar (logo + bell) + bottom nav (Dashboard / Bookings / Records / Tracking)
+> ~~Serial Tracker~~ — removed as a dedicated page; serial tracking lives on the Dashboard hero tracker.
 
 ---
 
-## 2. Theme — already done, plus small additions
+## 2. VERIFY.md alignment (acceptance checklist)
 
-Done: primary `#0F6E6A`, warm background `#FAF9F7`, border `#E5E7EB`, `--radius 0.375rem`, `--font-sans` Inter, `--font-heading` Epilogue, `--text-display-hero`.
+Status legend: ✅ done · 🟡 partial / needs alignment · ❌ not built yet
 
-**Add (phase 1):** remaining type utilities to `globals.css` `@theme inline` so stitch styles map 1:1:
+### 2.1 Dashboard Page (`/`)
 
-- `--text-label-caps` 12px / lh 1 / ls 0.05em / w600
-- `--text-headline-lg` 32px / 1.2 / 600; `--text-headline-lg-mobile` 28px / 1.2 / 600
-- `--text-headline-md` 24px / 1.3 / 600
-- `--text-body-lg` 18px / 1.6 / 400; `--text-body-md` 16px / 1.5 / 400
+| VERIFY item | Status | Where / what remains |
+| --- | --- | --- |
+| Live Serial Indicator (`Serial #16`) | ✅ | `dashboard/hero-tracker.tsx` — display-hero `#16`, Waiting badge, collapsible details, Current Serving `#11`, ETA `~25 mins` (from `queue.json`) |
+| **Ready Reports Summary Widget** (count/mini-list of completed diagnostic/lab reports) | ✅ | `dashboard/ready-reports.tsx` — count + mini-list of `records.json` lab results with `status: "ready"`; "View All" → `/records` |
+| "Book Appointment" CTA → appointments page | ✅ | `dashboard/quick-actions.tsx` → `/appointments` |
+| **"My Profile" CTA** (opens patient info view/modal) | ✅ | `dashboard/profile-dialog.tsx` — dialog fed by `patients.json`; "View Records" kept as tertiary link |
+| **Download Patient Info as PDF** | ✅ | Mock action in profile dialog — `sonner` toast |
+| **Download Serial Ticket as PDF / Print** | ✅ | Mock action on Hero Tracker — `sonner` toast |
 
-Use `font-heading` for headlines (Epilogue), `font-sans` for body (Inter). No drop shadows — 1px borders + `shadow-sm` only where the stitch used it.
+### 2.2 Book Appointment Page (`/appointments`)
+
+| VERIFY item | Status | Where / what remains |
+| --- | --- | --- |
+| Search input (doctor name / keyword) | ✅ | `appointments/filter-bar.tsx` (searches name + clinic) |
+| Specialty filter (dropdown/pills) | ✅ | `filter-bar.tsx` `Select` |
+| **Availability / Day filter** | ✅ | "Available On" `ToggleGroup` (Any/Mon–Sat) derived from `doctor.availability` |
+| Doctor photo & name | ✅ | Initials avatar (no photo asset in mock); acceptable |
+| **Degrees, designation, & department/specialty** | ✅ | Card displays `doctor.title` (e.g. "MD, FACC") under name |
+| **Visiting hours & chamber location** | ✅ | Card shows `doctor.room` (Chamber) + visiting days from `availability` |
+| Consultation fee | ✅ | `doctor-card.tsx` info grid |
+| "Book Serial" / "Select Slot" button | ✅ | `DoctorCard` "Book Now" → `booking-dialog.tsx` (date pills + slot grids from `slots.json`, Confirm → `sonner` toast) |
+
+### 2.3 Medical Records Page (`/records`)
+
+| VERIFY item | Status | Where / what remains |
+| --- | --- | --- |
+| **Tab system: "Doctor Visit Reports" / "Test & Diagnostic Reports"** | ✅ | Renamed in `records/page.tsx` |
+| Tab 1 — Doctor name & specialty | ✅ | `specialty` added to `records.json` rxRows + column |
+| Tab 1 — Date of visit | ✅ | `date` column |
+| Tab 1 — Complaint / diagnosis summary | ✅ | `diagnosis` column |
+| Tab 1 — "Download Report / Advice PDF" per record | ✅ | Ghost download button per row (mock) |
+| Tab 2 — Test title / category (CBC, X-Ray, ECG, USG) | ✅ | `labResults` cards with type icons |
+| Tab 2 — Date of test / **Lab order ID** | ✅ | `orderId` added + shown with date |
+| Tab 2 — **Status indicator (Ready / Pending)** | ✅ | `status` on labResults + `Badge` (default for Ready, secondary for Pending) |
+| Tab 2 — **"Download Report PDF / Image" per item** | ✅ | Download button next to "View Full Result" (mock) |
+
+### 2.4 Medicine Inventory Page (`/inventory`)
+
+| VERIFY item | Status | Where / what remains |
+| --- | --- | --- |
+| **Brand name & generic name** | ✅ | `name` = brand, `genericName` added + Generic column |
+| **Dosage instructions** (e.g. `1+0+1`, before/after meal) | ✅ | `dosage` added + column |
+| **Prescribing doctor's name** | ✅ | `prescribedBy` added + column |
+| Estimated / standard unit price | ✅ | `price` column |
+| **Download Full Prescription PDF** (global / per-visit) | ✅ | Header outline button (mock action) |
+
+### 2.5 Serial Tracker
+
+Removed as a standalone page/nav item — serial tracking is handled by the Dashboard **Hero Tracker** (display-hero serial, Current Serving, ETA, collapsible details, Serial Ticket download).
 
 ---
 
-## 3. Data (mock JSON)
+## 3. Theme — done
 
-Existing in `src/data/`: `patients.json`, `doctors.json`, `appointments.json`, `prescriptions.json`, `vitals.json`, `notifications.json`.
+Applied: primary `#0F6E6A`, warm background `#FAF9F7`, border `#E5E7EB`, `--radius 0.375rem`, `--font-sans` Inter, `--font-heading` Epilogue, `--text-display-hero`, plus `label-caps`, `headline-lg(-mobile)`, `headline-md`, `body-lg`, `body-md` type utilities in `globals.css` `@theme inline`.
 
-**Add:**
+Use `font-heading` for headlines (Epilogue), `font-sans` for body (Inter). No drop shadows — 1px borders + subtle flat layering per DESIGN.md.
 
-- `src/data/queue.json` — serial tracker: `{ serial, serving, estimatedWaitMin, doctorName, specialty, date, time, room, status }`
-- `src/data/inventory.json` — medicine stock: `{ name, category, price, discount, stock, status }`
-- `src/data/records.json` — Rx vault rows + lab results: `{ date, doctor, diagnosis, status }[]` and `{ date, title, description, icon }[]`
-- `src/data/slots.json` — booking slots: `{ date, day, month, morning: [], afternoon: [], booked: [] }`
+---
+
+## 4. Data (mock JSON)
+
+Existing: `patients.json`, `doctors.json`, `appointments.json`, `prescriptions.json`, `vitals.json`, `notifications.json`, `queue.json`, `inventory.json`, `records.json`, `slots.json`.
+
+**Data changes (done):**
+
+- `src/data/records.json` — labResults now have `orderId`, `status: "ready" | "pending"`; rxRows have `specialty`
+- `src/data/inventory.json` — items have brand `name`, `genericName`, `dosage`, `prescribedBy`
+- `src/data/doctors.json` — already had `title`, `room`, `availability`; now rendered
+- `src/data/patients.json` — feeds the My Profile dialog
 
 Pages import their JSON directly (static, RSC-friendly) — no fetch layer needed.
 
 ---
 
-## 4. Route structure
+## 5. Route structure (current)
 
 ```
 src/
 ├─ app/
-│  ├─ layout.tsx            # root: fonts, theme (done)
-│  ├─ page.tsx              # Dashboard
-│  ├─ appointments/page.tsx # Book Appointment
-│  ├─ records/page.tsx      # Medical Records
-│  ├─ tracking/page.tsx     # Serial Tracker
-│  └─ inventory/page.tsx    # Medicine Inventory
+│  ├─ layout.tsx            # root: fonts, theme, TooltipProvider, Toaster (done)
+│  └─ (portal)/
+│     ├─ layout.tsx         # SidebarProvider + AppSidebar + TopBar + BottomNav (done)
+│     ├─ page.tsx           # Dashboard (done, gaps in §2.1)
+│     ├─ appointments/page.tsx
+│     ├─ records/page.tsx
+│     └─ inventory/page.tsx
 └─ components/
-   ├─ ui/                   # shadcn components (CLI-added)
-   ├─ layout/
-   │  ├─ sidebar.tsx        # desktop nav (shadcn Sidebar)
-   │  ├─ top-bar.tsx        # mobile header + desktop greeting
-   │  └─ bottom-nav.tsx     # mobile nav
-   ├─ dashboard/            # tracker-hero, quick-actions, recent-activity
-   ├─ appointments/         # doctor-card, booking-dialog, filter-bar
-   ├─ records/              # rx-vault-table, lab-results-grid
-   ├─ tracking/             # tracker-hero, chamber-card, sms-toggle
-   └─ inventory/            # inventory-table
+   ├─ ui/                   # shadcn components (installed)
+   ├─ layout/               # app-sidebar, top-bar, bottom-nav, nav, notifications-menu
+   ├─ dashboard/            # hero-tracker, quick-actions, recent-activity, reminder-banner, ready-reports, profile-dialog
+   ├─ appointments/         # appointments-view, doctor-card, booking-dialog, filter-bar
 ```
 
-All `(client)` interactivity (dialogs, tabs state, filters, toggles) in `"use client"` components; pages stay RSC and just import data + components.
+All `(client)` interactivity (dialogs, tabs state, filters, toggles) lives in `"use client"` components; pages stay RSC and import data + components.
 
 ---
 
-## 5. shadcn components to install
+## 6. Remaining work
 
-```
-npx shadcn@latest add button card table tabs dialog badge avatar
-npx shadcn@latest add input select checkbox switch separator
-npx shadcn@latest add skeleton sidebar sheet dropdown-menu tooltip
-```
+All VERIFY.md feature gaps are implemented (see §2). Remaining:
 
-> `button` already installed. Use `sonner` (Radix base) for any toasts. Icons: `lucide-react`.
-
-Composition rules (from shadcn skill):
-
-- Semantic colors only (`bg-primary`, `text-muted-foreground`), `gap-*` not `space-y-*`
-- `DialogTitle` required in dialogs; `AvatarFallback` required in avatars
-- Forms use `FieldGroup`/`Field`; option sets (2–7) use `ToggleGroup`
-- Status chips = `Badge` variants; rows = `Table`; cards = full `Card` composition
-- Icons in buttons via `data-icon="inline-start"`, no size classes on icons
-
----
-
-## 6. Build phases
-
-**Phase 0 — prep (done):** shadcn init, theme tokens, fonts, base mock JSONs, lint/build green.
-
-**Phase 1 — shell**
-
-1. Add missing type utilities (see §2)
-2. `add` all components in §5
-3. `src/components/layout/sidebar.tsx` — shadcn `Sidebar` w/ lucide icons (LayoutDashboard, CalendarDays, FolderOpen, Activity, Pill, Settings, LifeBuoy), active-state styling via `usePathname`
-4. `top-bar.tsx` + `bottom-nav.tsx` (mobile), wire into a `(portal)` route group layout
-5. Notifications dropdown (bell + unread dot from `notifications.json`)
-
-**Phase 2 — Dashboard**
-
-1. Greeting header + dismissible reminder `Alert`
-2. Hero tracker card (deep teal, `text-display-hero`, collapsible details)
-3. Quick actions + Recent Activity from `prescriptions.json`
-
-**Phase 3 — Book Appointment**
-
-1. Filter bar (search `Input`, `Select` specialty, fee `Input`s, `Checkbox` quick filters)
-2. Doctor card grid from `doctors.json` (extend doctors with rating/clinic/fee/availability)
-3. Booking `Dialog`: date pills + slot grids from `slots.json`; Confirm → `sonner` toast
-
-**Phase 4 — Medical Records**
-
-1. `Tabs`: Rx Vault `Table` from `records.json` + `Badge` statuses; Lab Results card grid
-
-**Phase 5 — Serial Tracker**
-
-1. Hero tracker (pulsing dot, display-hero serial) from `queue.json`
-2. Chamber details card + map placeholder
-3. SMS alert `Switch`
-
-**Phase 6 — Medicine Inventory**
-
-1. Header + download button, inventory `Table` with stock `Badge`s from `inventory.json`
-
-**Phase 7 — polish & verify**
-
-- Mobile responsiveness (bottom nav, single-column grids, 20px margins)
-- `npm run lint` + `npm run build`
-- Cross-check against stitch screenshots (`*.png`)
+1. `npm run lint` + `npm run build`
+2. Cross-check every box in `VERIFY.md` (mock PDF/print actions via `sonner` toast — no real file generation)
 
 ---
 
 ## 7. Out of scope
 
-- Auth/login, real booking flow, PDF generation, live queue updates (static mock), settings page (nav item only), dark mode toggle (tokens exist, no UI)
+- Auth/login, real booking flow, **real** PDF file generation (mock download actions only), live queue updates (static mock), settings page (nav item only), dark mode toggle (tokens exist, no UI)
