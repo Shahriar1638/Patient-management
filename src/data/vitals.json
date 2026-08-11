@@ -1,0 +1,79 @@
+[
+  {
+    "patientId": "pat-001",
+    "recordedAt": "2026-08-05T08:00:00Z",
+    "heartRate": 72,
+    "bloodPressureSystolic": 118,
+    "bloodPressureDiastolic": 76,
+    "temperatureC": 36.7,
+    "oxygenSaturation": 98,
+    "bloodGlucoseMgDl": 94,
+    "respiratoryRate": 14
+  },
+  {
+    "patientId": "pat-002",
+    "recordedAt": "2026-07-30T09:15:00Z",
+    "heartRate": 81,
+    "bloodPressureSystolic": 146,
+    "bloodPressureDiastolic": 92,
+    "temperatureC": 37.1,
+    "oxygenSaturation": 97,
+    "bloodGlucoseMgDl": 108,
+    "respiratoryRate": 16
+  },
+  {
+    "patientId": "pat-002",
+    "recordedAt": "2026-08-06T07:45:00Z",
+    "heartRate": 78,
+    "bloodPressureSystolic": 138,
+    "bloodPressureDiastolic": 86,
+    "temperatureC": 36.9,
+    "oxygenSaturation": 98,
+    "bloodGlucoseMgDl": 104,
+    "respiratoryRate": 15
+  },
+  {
+    "patientId": "pat-004",
+    "recordedAt": "2026-07-15T13:40:00Z",
+    "heartRate": 95,
+    "bloodPressureSystolic": 152,
+    "bloodPressureDiastolic": 96,
+    "temperatureC": 37.0,
+    "oxygenSaturation": 94,
+    "bloodGlucoseMgDl": 132,
+    "respiratoryRate": 19
+  },
+  {
+    "patientId": "pat-005",
+    "recordedAt": "2026-08-05T10:30:00Z",
+    "heartRate": 88,
+    "bloodPressureSystolic": 122,
+    "bloodPressureDiastolic": 78,
+    "temperatureC": 36.8,
+    "oxygenSaturation": 92,
+    "bloodGlucoseMgDl": 96,
+    "respiratoryRate": 18
+  },
+  {
+    "patientId": "pat-006",
+    "recordedAt": "2026-07-22T15:00:00Z",
+    "heartRate": 68,
+    "bloodPressureSystolic": 115,
+    "bloodPressureDiastolic": 74,
+    "temperatureC": 36.6,
+    "oxygenSaturation": 99,
+    "bloodGlucoseMgDl": 88,
+    "respiratoryRate": 13
+  },
+  {
+    "patientId": "pat-003",
+    "recordedAt": "2026-08-02T11:20:00Z",
+    "heartRate": 74,
+    "bloodPressureSystolic": 121,
+    "bloodPressureDiastolic": 79,
+    "temperatureC": 36.8,
+    "oxygenSaturation": 98,
+    "bloodGlucoseMgDl": 91,
+    "respiratoryRate": 15
+  }
+]
