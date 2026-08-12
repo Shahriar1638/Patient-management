@@ -1,7 +1,6 @@
 import Link from "next/link"
 import { HeartPulse } from "lucide-react"
 
-import { NotificationsMenu } from "@/components/layout/notifications-menu"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { getInitials } from "@/lib/utils"
 import patients from "@/data/patients.json"
@@ -21,7 +20,6 @@ export function TopBar() {
         </span>
       </Link>
       <div className="flex items-center gap-3 md:gap-4">
-        <NotificationsMenu />
         <div className="hidden text-right sm:block">
           <p className="text-label-caps uppercase tracking-widest text-muted-foreground">
             Welcome back,

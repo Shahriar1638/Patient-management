@@ -1,25 +1,18 @@
-import { HeroTracker } from "@/components/dashboard/hero-tracker"
-import { QuickActions } from "@/components/dashboard/quick-actions"
-import { ReadyReports } from "@/components/dashboard/ready-reports"
-import { RecentActivity } from "@/components/dashboard/recent-activity"
-import { ReminderBanner } from "@/components/dashboard/reminder-banner"
+import { DoctorDirectory } from "@/components/doctors/doctor-directory"
+import doctors from "@/data/doctors.json"
 
-export default function DashboardPage() {
+export default function HomePage() {
   return (
     <>
-      <div className="hidden border-b border-border pb-6 md:block">
-        <p className="max-w-2xl text-body-lg text-muted-foreground">
-          Manage your appointments, view medical records, and track your clinic
-          wait times all in one place. Your health, simplified.
+      <div className="mt-2 flex flex-col gap-2 md:mt-4">
+        <h1 className="font-heading text-headline-lg-mobile font-semibold md:text-headline-lg">
+          Find a Doctor
+        </h1>
+        <p className="text-body-md text-muted-foreground">
+          Search our doctors, compare timings, and book your serial in minutes.
         </p>
       </div>
-      <ReminderBanner />
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-12">
-        <HeroTracker />
-        <QuickActions />
-        <RecentActivity />
-        <ReadyReports />
-      </div>
+      <DoctorDirectory doctors={doctors} />
     </>
   )
 }

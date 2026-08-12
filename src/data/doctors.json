@@ -15,7 +15,19 @@
     "clinic": "HeartCare General Hospital",
     "fee": 150,
     "nextAvailable": "Today, 2:30 PM",
-    "videoConsult": true
+    "videoConsult": true,
+    "description": "Dr. Eleanor Whitfield is a board-certified cardiologist with over 18 years of experience in preventive cardiology and heart-failure management. She is known for her patient-first approach and takes time to explain every diagnosis in plain language.",
+    "qualifications": [
+      "MD — Stanford University School of Medicine",
+      "FACC — Fellow, American College of Cardiology",
+      "Fellowship in Interventional Cardiology, Mayo Clinic",
+      "18+ years of clinical experience"
+    ],
+    "estimatedTurnTime": "~25 min",
+    "timings": "10:00 AM – 4:00 PM",
+    "days": "Mon · Wed · Fri",
+    "slotStart": "10:00",
+    "slotEnd": "16:00"
   },
   {
     "id": "doc-002",
@@ -33,7 +45,19 @@
     "clinic": "City Brain & Spine Center",
     "fee": 180,
     "nextAvailable": "Tomorrow, 10:00 AM",
-    "videoConsult": false
+    "videoConsult": false,
+    "description": "Dr. Julian Martínez specializes in diabetes care, thyroid disorders, and hormonal health. He combines the latest clinical research with practical lifestyle guidance, helping patients manage chronic conditions with confidence.",
+    "qualifications": [
+      "MD — Johns Hopkins University School of Medicine",
+      "FACP — Fellow, American College of Physicians",
+      "Board Certified in Endocrinology & Metabolism",
+      "Diabetes Research Fellowship, Joslin Clinic"
+    ],
+    "estimatedTurnTime": "~20 min",
+    "timings": "6:00 AM – 1:00 PM",
+    "days": "Tue · Thu · Sat",
+    "slotStart": "06:00",
+    "slotEnd": "13:00"
   },
   {
     "id": "doc-003",
@@ -51,7 +75,19 @@
     "clinic": "Meridian Wellness Clinic",
     "fee": 95,
     "nextAvailable": "Today, 4:00 PM",
-    "videoConsult": true
+    "videoConsult": true,
+    "description": "Dr. Nadia Haddad is a family physician who cares for patients of all ages — from routine check-ups to chronic illness follow-ups. Her warm, thorough consultations make her a favorite among families in the community.",
+    "qualifications": [
+      "MD — University of California, San Francisco",
+      "Residency in Family Medicine, UCSF Health",
+      "Certified in Preventive & Lifestyle Medicine",
+      "12+ years in community practice"
+    ],
+    "estimatedTurnTime": "~15 min",
+    "timings": "10:00 AM – 4:00 PM",
+    "days": "Mon · Tue · Thu",
+    "slotStart": "10:00",
+    "slotEnd": "16:00"
   },
   {
     "id": "doc-004",
@@ -69,7 +105,19 @@
     "clinic": "Pulmonary Care Institute",
     "fee": 165,
     "nextAvailable": "Thu, 9:00 AM",
-    "videoConsult": true
+    "videoConsult": true,
+    "description": "Dr. Robert Kim is a pulmonologist focused on asthma, COPD, and sleep-related breathing disorders. He is an early adopter of remote monitoring, letting patients track their lung health between visits.",
+    "qualifications": [
+      "MD — Duke University School of Medicine",
+      "FCCP — Fellow, American College of Chest Physicians",
+      "Fellowship in Pulmonary & Critical Care Medicine",
+      "Sleep Medicine Certification"
+    ],
+    "estimatedTurnTime": "~30 min",
+    "timings": "7:00 PM – 1:00 AM",
+    "days": "Wed · Fri",
+    "slotStart": "19:00",
+    "slotEnd": "01:00"
   },
   {
     "id": "doc-005",
@@ -87,6 +135,18 @@
     "clinic": "DermaCare Studio",
     "fee": 120,
     "nextAvailable": "Fri, 11:30 AM",
-    "videoConsult": false
+    "videoConsult": false,
+    "description": "Dr. Grace Adebayo treats skin, hair, and nail conditions with a focus on early detection and cosmetic dermatology. Her clinic pairs clinical excellence with a calming, modern experience.",
+    "qualifications": [
+      "MD — Harvard Medical School",
+      "FAAD — Fellow, American Academy of Dermatology",
+      "Dermatopathology Fellowship, NYU Langone",
+      "10+ years in clinical dermatology"
+    ],
+    "estimatedTurnTime": "~20 min",
+    "timings": "2:00 PM – 8:00 PM",
+    "days": "Mon · Thu · Fri",
+    "slotStart": "14:00",
+    "slotEnd": "20:00"
   }
 ]

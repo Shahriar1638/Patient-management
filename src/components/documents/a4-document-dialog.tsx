@@ -30,21 +30,37 @@ const MAX_ZOOM = 2.5
  * dialog showing the sheet auto-scaled to fit (like a print preview),
  * and "Download PDF" opens the browser print dialog (A4 via @page CSS)
  * where the user can "Save as PDF".
+ *
+ * Can be used in controlled mode via `open`/`onOpenChange` (e.g. open after
+ * a form submit). An optional `footerExtra` node renders beside the print
+ * button (e.g. a "Send via SMS" action).
  */
 export function A4DocumentDialog({
   trigger,
   title,
   description,
   children,
+  open: openProp,
+  onOpenChange,
+  footerExtra,
 }: {
-  trigger: ReactElement<{ onClick?: (event: ReactMouseEvent) => void }>
+  trigger?: ReactElement<{ onClick?: (event: ReactMouseEvent) => void }>
   title: string
   description?: string
   children: ReactNode
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
+  footerExtra?: ReactNode
 }) {
-  const [open, setOpen] = useState(false)
+  const [internalOpen, setInternalOpen] = useState(false)
   const [zoom, setZoom] = useState(1)
   const [fit, setFit] = useState({ scale: 1, width: 794, height: 1123 })
+
+  const open = openProp ?? internalOpen
+  const setOpen = (next: boolean) => {
+    if (onOpenChange) onOpenChange(next)
+    else setInternalOpen(next)
+  }
 
   const previewRef = useRef<HTMLDivElement>(null)
   const sheetRef = useRef<HTMLDivElement>(null)
@@ -77,16 +93,18 @@ export function A4DocumentDialog({
 
   const scale = Math.min(Math.max(fit.scale * zoom, 0.1), 4)
 
-  const triggerProps = trigger.props as
+  const triggerProps = trigger?.props as
     | { onClick?: (event: ReactMouseEvent) => void }
     | undefined
 
-  const triggerElement = cloneElement(trigger, {
-    onClick: (event: ReactMouseEvent) => {
-      triggerProps?.onClick?.(event)
-      setOpen(true)
-    },
-  })
+  const triggerElement = trigger
+    ? cloneElement(trigger, {
+        onClick: (event: ReactMouseEvent) => {
+          triggerProps?.onClick?.(event)
+          setOpen(true)
+        },
+      })
+    : null
 
   function handleDownload() {
     // Show guidance only after the print dialog closes, so it's actually seen.
@@ -149,7 +167,10 @@ export function A4DocumentDialog({
           </div>
 
           <DialogFooter className="m-0 gap-3 px-6 py-4 sm:items-center sm:justify-between">
-            <p className="text-sm text-muted-foreground">A4 · Ready to print</p>
+            <div className="flex flex-wrap items-center gap-2">
+              <p className="text-sm text-muted-foreground">A4 · Ready to print</p>
+              {footerExtra}
+            </div>
             <div className="flex flex-wrap items-center justify-end gap-2">
               <Button
                 variant="outline"

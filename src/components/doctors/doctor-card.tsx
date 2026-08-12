@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { CalendarClock, DoorOpen, MapPin, Star } from "lucide-react"
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
@@ -7,15 +8,11 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { getInitials } from "@/lib/utils"
 import type { Doctor } from "@/lib/types"
 
-export function DoctorCard({
-  doctor,
-  onBook,
-}: {
-  doctor: Doctor
-  onBook: () => void
-}) {
+export function DoctorCard({ doctor }: { doctor: Doctor }) {
+  const detailsHref = `/doctors/${doctor.id}`
+
   return (
-    <Card className="flex flex-col">
+    <Card className="flex flex-col transition-colors hover:border-primary/40">
       <CardContent className="flex flex-col gap-4">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-4">
@@ -48,11 +45,11 @@ export function DoctorCard({
         <div className="grid grid-cols-2 gap-4 rounded-xl bg-muted p-4">
           <div className="flex flex-col gap-1">
             <p className="text-label-caps uppercase text-muted-foreground">
-              Next Available
+              Timings
             </p>
             <p className="flex items-center gap-1.5 text-sm font-bold">
               <CalendarClock className="size-4 text-primary" />
-              {doctor.nextAvailable}
+              {doctor.timings}
             </p>
           </div>
           <div className="flex flex-col gap-1">
@@ -72,28 +69,27 @@ export function DoctorCard({
           </div>
           <div className="flex flex-col gap-1">
             <p className="text-label-caps uppercase text-muted-foreground">
-              Visiting Hours
+              Visiting Days
             </p>
-            <p className="text-sm font-bold">
-              {doctor.availability.join(" · ")}
-            </p>
+            <p className="text-sm font-bold">{doctor.days}</p>
           </div>
         </div>
       </CardContent>
       <CardFooter className="mt-auto gap-3 border-0 bg-transparent">
         <Button
+          asChild
           variant="outline"
           size="lg"
           className="h-11 flex-1 text-xs font-bold uppercase tracking-widest"
         >
-          View Profile
+          <Link href={detailsHref}>View Profile</Link>
         </Button>
         <Button
+          asChild
           size="lg"
           className="h-11 flex-1 text-xs font-bold uppercase tracking-widest"
-          onClick={onBook}
         >
-          Book Now
+          <Link href={detailsHref}>Book Appointment</Link>
         </Button>
       </CardFooter>
     </Card>
