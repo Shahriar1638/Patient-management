@@ -14,15 +14,22 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Card, CardTitle } from "@/components/ui/card"
+import { BlogList } from "@/components/blogs/blog-list"
 import { BookingForm } from "@/components/doctors/booking-form"
 import { getInitials } from "@/lib/utils"
-import type { Doctor } from "@/lib/types"
+import type { BlogPost, Doctor } from "@/lib/types"
 
-export function DoctorDetails({ doctor }: { doctor: Doctor }) {
+export function DoctorDetails({
+  doctor,
+  posts,
+}: {
+  doctor: Doctor
+  posts: BlogPost[]
+}) {
   return (
     <div className="flex flex-col gap-12">
       {/* Profile hero — full-bleed */}
-      <section className="relative left-1/2 -ml-[50vw] flex min-h-[520px] w-screen flex-col overflow-hidden bg-primary text-primary-foreground">
+      <section className="relative left-1/2 -mt-6 -ml-[50vw] flex min-h-[520px] w-screen flex-col overflow-hidden bg-primary text-primary-foreground md:-mt-8">
         {/* Decorative background elements */}
         <div className="pointer-events-none absolute top-0 right-0 h-full w-1/3 -skew-x-12 translate-x-1/4 bg-white/5" />
         <div className="pointer-events-none absolute bottom-0 left-0 size-64 -translate-x-1/2 translate-y-1/2 rounded-full bg-white/5 blur-3xl" />
@@ -146,7 +153,7 @@ export function DoctorDetails({ doctor }: { doctor: Doctor }) {
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
         {/* Left column: booking form */}
         <div className="lg:col-span-5">
-          <div id="booking" className="scroll-mt-24 lg:sticky lg:top-24">
+          <div id="booking" className="scroll-mt-24">
             <BookingForm doctor={doctor} />
           </div>
         </div>
@@ -184,6 +191,15 @@ export function DoctorDetails({ doctor }: { doctor: Doctor }) {
           </Card>
         </div>
       </div>
+
+      {/* Blogs by this doctor */}
+      {posts.length > 0 && (
+        <BlogList
+          posts={posts}
+          doctorId={doctor.id}
+          doctorName={`Dr. ${doctor.firstName} ${doctor.lastName}`}
+        />
+      )}
     </div>
   )
 }

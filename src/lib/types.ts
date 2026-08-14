@@ -53,4 +53,5 @@ export type BlogPost = {
   readTime: string
   image: string
   featured: boolean
+  content: string[]
 }

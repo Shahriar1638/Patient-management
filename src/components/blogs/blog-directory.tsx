@@ -3,32 +3,11 @@
 import Link from "next/link"
 import { useMemo, useState } from "react"
 
+import { AuthorAvatar, BlogCard, CategoryPill } from "@/components/blogs/blog-card"
 import { Button } from "@/components/ui/button"
 import type { BlogPost } from "@/lib/types"
 
 const INITIAL_VISIBLE = 6
-
-function getAuthorInitials(author: string): string {
-  const parts = author.replace("Dr. ", "").trim().split(/\s+/)
-  const [first, last] = parts
-  return `${first?.[0] ?? ""}${last?.[0] ?? ""}`.toUpperCase()
-}
-
-function CategoryPill({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="w-fit rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
-      {children}
-    </span>
-  )
-}
-
-function AuthorAvatar({ author }: { author: string }) {
-  return (
-    <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">
-      {getAuthorInitials(author)}
-    </span>
-  )
-}
 
 export function BlogDirectory({
   posts,
@@ -67,7 +46,7 @@ export function BlogDirectory({
   return (
     <div className="flex flex-col gap-10">
       {/* Blog hero */}
-      <section className="relative left-1/2 -ml-[50vw] flex w-screen flex-col overflow-hidden bg-primary text-primary-foreground">
+      <section className="relative left-1/2 -mt-6 -ml-[50vw] flex w-screen flex-col overflow-hidden bg-primary text-primary-foreground md:-mt-8">
         <div className="pointer-events-none absolute top-0 right-0 h-full w-1/3 -skew-x-12 translate-x-1/4 bg-white/5" />
         <div className="pointer-events-none absolute bottom-0 left-0 size-64 -translate-x-1/2 translate-y-1/2 rounded-full bg-white/5 blur-3xl" />
         <div className="relative z-10 mx-auto w-full max-w-[1280px] px-4 py-14 md:px-8 md:py-20">
@@ -128,7 +107,10 @@ export function BlogDirectory({
 
       {/* Featured article */}
       {featured && (
-        <article className="group grid grid-cols-1 gap-0 overflow-hidden rounded-xl bg-card ring-1 ring-foreground/10 transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_20px_40px_-12px_rgba(15,110,106,0.18)] md:grid-cols-2">
+        <Link
+          href={`/blogs/${featured.id}`}
+          className="group grid grid-cols-1 gap-0 overflow-hidden rounded-xl bg-card ring-1 ring-foreground/10 transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_20px_40px_-12px_rgba(15,110,106,0.18)] md:grid-cols-2"
+        >
           <div className="h-64 overflow-hidden md:h-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -160,42 +142,14 @@ export function BlogDirectory({
               </div>
             </div>
           </div>
-        </article>
+        </Link>
       )}
 
       {/* Article grid */}
       {grid.length > 0 ? (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {grid.slice(0, visible).map((post) => (
-            <article
-              key={post.id}
-              className="group flex flex-col overflow-hidden rounded-xl bg-card ring-1 ring-foreground/10 transition-all duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_20px_40px_-12px_rgba(15,110,106,0.18)]"
-            >
-              <div className="h-44 overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="flex flex-1 flex-col p-5">
-                <CategoryPill>{post.category}</CategoryPill>
-                <h3 className="mt-3 mb-2 font-heading text-lg leading-snug font-semibold transition-colors group-hover:text-primary">
-                  {post.title}
-                </h3>
-                <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
-                  {post.excerpt}
-                </p>
-                <div className="mt-auto flex items-center justify-between border-t border-border pt-4 text-xs text-muted-foreground">
-                  <span className="flex items-center gap-2">
-                    <AuthorAvatar author={post.author} />
-                    <span>{post.author}</span>
-                  </span>
-                  <span>{post.readTime}</span>
-                </div>
-              </div>
-            </article>
+            <BlogCard key={post.id} post={post} />
           ))}
         </div>
       ) : (

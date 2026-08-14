@@ -2,6 +2,7 @@ import { notFound } from "next/navigation"
 
 import { DoctorDetails } from "@/components/doctors/doctor-details"
 import doctors from "@/data/doctors.json"
+import posts from "@/data/blogs.json"
 import type { Doctor } from "@/lib/types"
 
 export function generateStaticParams() {
@@ -20,5 +21,7 @@ export default async function DoctorDetailsPage({
     notFound()
   }
 
-  return <DoctorDetails doctor={doctor} />
+  const doctorPosts = posts.filter((post) => post.doctorId === id)
+
+  return <DoctorDetails doctor={doctor} posts={doctorPosts} />
 }
