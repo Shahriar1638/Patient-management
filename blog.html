@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Health Blog - Clinical Editorial</title>
+<!-- Font Imports -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#0f6e6a', // primary teal
+              50: '#f0f9f8',
+              100: '#d5f0ef',
+              200: '#aee2df',
+              300: '#7acbcc',
+              400: '#4db0b2',
+              500: '#329496',
+              600: '#277678',
+              700: '#225f61',
+              800: '#1e4e50',
+              900: '#1b4142',
+              950: '#0d2526',
+            },
+            surface: {
+              DEFAULT: '#faf9f7', // warm-white
+              dim: '#dadad8',
+              bright: '#ffffff',
+              container: '#ecebec',
+            },
+            text: {
+              primary: '#1a1a1a',
+              secondary: '#4b5563',
+              muted: '#6b7280',
+            }
+          },
+          fontFamily: {
+            heading: ['Fraunces', 'serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+          borderRadius: {
+            'custom': '8px', // ROUND_EIGHT roughly
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Styles -->
+<style data-purpose="custom-styling">
+    body {
+      background-color: theme('colors.surface.DEFAULT');
+      color: theme('colors.text.primary');
+    }
+    
+    .font-heading {
+      font-family: theme('fontFamily.heading');
+    }
+    
+    .font-body {
+      font-family: theme('fontFamily.body');
+    }
+
+    /* Custom Scrollbar for better aesthetic */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: theme('colors.surface.DEFAULT');
+    }
+    ::-webkit-scrollbar-thumb {
+      background: theme('colors.surface.dim');
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: theme('colors.brand.300');
+    }
+
+    /* Card lift on hover — the one motion moment on this page */
+    .article-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -12px rgba(15, 110, 106, 0.18);
+      border-color: theme('colors.brand.200');
+    }
+    .article-card img {
+      transition: transform 0.4s ease;
+    }
+    .article-card:hover img {
+      transform: scale(1.05);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .article-card, .article-card img {
+        transition: none !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="font-body antialiased min-h-screen flex flex-col">
+<!-- BEGIN: TopAppBar -->
+<header class="bg-surface-bright border-b border-surface-dim sticky top-0 z-50">
+<div class="max-w-[1440px] mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<!-- Logo Icon Placeholder -->
+<div class="w-8 h-8 bg-brand rounded-custom flex items-center justify-center text-white">
+<svg class="h-5 w-5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" fill-rule="evenodd"></path>
+</svg>
+</div>
+<span class="font-heading font-semibold text-xl text-brand">MedCare Portal</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-right hidden sm:block">
+<p class="text-xs text-text-muted uppercase tracking-wider">Welcome Back,</p>
+<p class="font-medium text-sm text-text-primary">Amelia Reyes</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-brand text-white flex items-center justify-center font-semibold text-sm">
+          AR
+        </div>
+</div>
+</div>
+</header>
+<!-- END: TopAppBar -->
+
+<!-- BEGIN: Blog Hero -->
+<section class="bg-brand text-white relative overflow-hidden">
+<div class="max-w-5xl mx-auto w-full px-6 py-14 md:px-12 md:py-20 relative z-10">
+<span class="px-3 py-1 rounded-full bg-white/20 text-[10px] font-bold tracking-[0.2em] uppercase">From Our Physicians</span>
+<h1 class="font-heading text-4xl md:text-6xl font-bold leading-tight mt-4 mb-4 max-w-2xl">Notes on staying well</h1>
+<p class="text-white/90 text-lg max-w-xl">Practical, evidence-based reading from the doctors at MedCare — written for patients, not textbooks.</p>
+</div>
+<!-- Decorative Background Element -->
+<div class="absolute top-0 right-0 w-1/3 h-full bg-white/5 -skew-x-12 translate-x-1/4 pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full -translate-x-1/2 translate-y-1/2 blur-3xl pointer-events-none"></div>
+</section>
+<!-- END: Blog Hero -->
+
+<div class="flex flex-1 max-w-[1440px] w-full mx-auto">
+<!-- BEGIN: Main Content Area -->
+<main class="flex-1 py-10 md:py-14 mx-auto w-full">
+<div class="max-w-5xl mx-auto px-6 md:px-12">
+
+<!-- Category Filter Bar -->
+<div class="flex flex-wrap items-center gap-2 mb-10">
+<button class="px-4 py-2 rounded-full bg-brand text-white text-sm font-semibold">All Articles</button>
+<button class="px-4 py-2 rounded-full bg-surface-bright border border-surface-dim text-text-secondary text-sm font-medium hover:border-brand hover:text-brand transition-colors">Endocrinology</button>
+<button class="px-4 py-2 rounded-full bg-surface-bright border border-surface-dim text-text-secondary text-sm font-medium hover:border-brand hover:text-brand transition-colors">Cardiology</button>
+<button class="px-4 py-2 rounded-full bg-surface-bright border border-surface-dim text-text-secondary text-sm font-medium hover:border-brand hover:text-brand transition-colors">Nutrition</button>
+<button class="px-4 py-2 rounded-full bg-surface-bright border border-surface-dim text-text-secondary text-sm font-medium hover:border-brand hover:text-brand transition-colors">Pediatrics</button>
+</div>
+
+<!-- BEGIN: Featured Article -->
+<a class="article-card group block bg-surface-bright rounded-custom border border-surface-dim overflow-hidden mb-10" href="#">
+<div class="grid grid-cols-1 md:grid-cols-2">
+<div class="h-64 md:h-full overflow-hidden">
+<img alt="Doctor reviewing bloodwork results with a patient" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=900&amp;q=80"/>
+</div>
+<div class="p-8 md:p-10 flex flex-col justify-center">
+<div class="flex items-center gap-3 mb-4">
+<span class="px-3 py-1 rounded-full bg-brand-50 text-brand text-[10px] font-bold tracking-[0.2em] uppercase">Endocrinology</span>
+<span class="text-xs text-text-muted">8 min read</span>
+</div>
+<h2 class="font-heading text-2xl md:text-3xl font-bold leading-snug mb-3 group-hover:text-brand transition-colors">What your A1C number is actually telling you</h2>
+<p class="text-text-secondary leading-relaxed mb-6">A single blood test can look like a mystery. Here's how to read the result, what counts as a meaningful change, and when it's worth a follow-up conversation.</p>
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-brand text-white flex items-center justify-center font-semibold text-xs flex-shrink-0">JM</div>
+<div>
+<p class="text-sm font-medium text-text-primary">Dr. Julian Martínez</p>
+<p class="text-xs text-text-muted">Aug 10, 2026</p>
+</div>
+</div>
+</div>
+</div>
+</a>
+<!-- END: Featured Article -->
+
+<!-- BEGIN: Article Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+<a class="article-card group block bg-surface-bright rounded-custom border border-surface-dim overflow-hidden" href="#">
+<div class="h-44 overflow-hidden">
+<img alt="Stethoscope resting on a heart-health chart" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=600&amp;q=80"/>
+</div>
+<div class="p-5">
+<span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand text-[10px] font-bold tracking-[0.15em] uppercase">Cardiology</span>
+<h3 class="font-heading text-lg font-semibold leading-snug mt-3 mb-2 group-hover:text-brand transition-colors">Blood pressure at home: when to worry, when to relax</h3>
+<p class="text-text-secondary text-sm leading-relaxed mb-4">A simple guide to reading your own cuff readings without spiraling over every fluctuation.</p>
+<div class="flex items-center justify-between text-xs text-text-muted pt-4 border-t border-surface-dim">
+<span>Dr. Priya Nair</span>
+<span>5 min read</span>
+</div>
+</div>
+</a>
+
+<a class="article-card group block bg-surface-bright rounded-custom border border-surface-dim overflow-hidden" href="#">
+<div class="h-44 overflow-hidden">
+<img alt="Colorful bowl of vegetables and whole grains" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&amp;q=80"/>
+</div>
+<div class="p-5">
+<span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand text-[10px] font-bold tracking-[0.15em] uppercase">Nutrition</span>
+<h3 class="font-heading text-lg font-semibold leading-snug mt-3 mb-2 group-hover:text-brand transition-colors">Building a plate for stable blood sugar</h3>
+<p class="text-text-secondary text-sm leading-relaxed mb-4">The order you eat your food in matters more than most diets ever tell you.</p>
+<div class="flex items-center justify-between text-xs text-text-muted pt-4 border-t border-surface-dim">
+<span>Dr. Julian Martínez</span>
+<span>6 min read</span>
+</div>
+</div>
+</a>
+
+<a class="article-card group block bg-surface-bright rounded-custom border border-surface-dim overflow-hidden" href="#">
+<div class="h-44 overflow-hidden">
+<img alt="Parent checking a child's temperature at home" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1584515933487-779824d29309?w=600&amp;q=80"/>
+</div>
+<div class="p-5">
+<span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand text-[10px] font-bold tracking-[0.15em] uppercase">Pediatrics</span>
+<h3 class="font-heading text-lg font-semibold leading-snug mt-3 mb-2 group-hover:text-brand transition-colors">Fever in kids: what actually needs a clinic visit</h3>
+<p class="text-text-secondary text-sm leading-relaxed mb-4">Temperature alone rarely tells the full story. Here's what else to watch for.</p>
+<div class="flex items-center justify-between text-xs text-text-muted pt-4 border-t border-surface-dim">
+<span>Dr. Sofia Reyes</span>
+<span>4 min read</span>
+</div>
+</div>
+</a>
+
+<a class="article-card group block bg-surface-bright rounded-custom border border-surface-dim overflow-hidden" href="#">
+<div class="h-44 overflow-hidden">
+<img alt="Person tying running shoes before a jog" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=600&amp;q=80"/>
+</div>
+<div class="p-5">
+<span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand text-[10px] font-bold tracking-[0.15em] uppercase">Cardiology</span>
+<h3 class="font-heading text-lg font-semibold leading-snug mt-3 mb-2 group-hover:text-brand transition-colors">Starting cardio after 40: a slower, smarter ramp-up</h3>
+<p class="text-text-secondary text-sm leading-relaxed mb-4">Why the "no pain, no gain" approach backfires for a first-time routine.</p>
+<div class="flex items-center justify-between text-xs text-text-muted pt-4 border-t border-surface-dim">
+<span>Dr. Priya Nair</span>
+<span>7 min read</span>
+</div>
+</div>
+</a>
+
+<a class="article-card group block bg-surface-bright rounded-custom border border-surface-dim overflow-hidden" href="#">
+<div class="h-44 overflow-hidden">
+<img alt="Thyroid ultrasound scan being reviewed" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=600&amp;q=80"/>
+</div>
+<div class="p-5">
+<span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand text-[10px] font-bold tracking-[0.15em] uppercase">Endocrinology</span>
+<h3 class="font-heading text-lg font-semibold leading-snug mt-3 mb-2 group-hover:text-brand transition-colors">Thyroid fatigue vs. everyday tiredness</h3>
+<p class="text-text-secondary text-sm leading-relaxed mb-4">Three questions to ask yourself before booking a thyroid panel.</p>
+<div class="flex items-center justify-between text-xs text-text-muted pt-4 border-t border-surface-dim">
+<span>Dr. Julian Martínez</span>
+<span>5 min read</span>
+</div>
+</div>
+</a>
+
+<a class="article-card group block bg-surface-bright rounded-custom border border-surface-dim overflow-hidden" href="#">
+<div class="h-44 overflow-hidden">
+<img alt="Meal prep containers with balanced portions" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1547592180-85f173990554?w=600&amp;q=80"/>
+</div>
+<div class="p-5">
+<span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand text-[10px] font-bold tracking-[0.15em] uppercase">Nutrition</span>
+<h3 class="font-heading text-lg font-semibold leading-snug mt-3 mb-2 group-hover:text-brand transition-colors">Meal prepping for a chronic condition without the burnout</h3>
+<p class="text-text-secondary text-sm leading-relaxed mb-4">A realistic weekly system, not a 6 AM smoothie regimen you'll quit by Thursday.</p>
+<div class="flex items-center justify-between text-xs text-text-muted pt-4 border-t border-surface-dim">
+<span>Dr. Sofia Reyes</span>
+<span>6 min read</span>
+</div>
+</div>
+</a>
+
+</div>
+<!-- END: Article Grid -->
+
+<!-- Load More -->
+<div class="flex justify-center mt-12">
+<button class="px-8 py-3 rounded-custom border border-surface-dim bg-surface-bright text-text-primary font-medium text-sm hover:border-brand hover:text-brand transition-colors">Load more articles</button>
+</div>
+
+</div>
+</main>
+<!-- END: Main Content Area -->
+</div>
+</body></html>

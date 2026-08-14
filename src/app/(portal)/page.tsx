@@ -1,5 +1,6 @@
 import { DoctorDirectory } from "@/components/doctors/doctor-directory"
 import doctors from "@/data/doctors.json"
+import type { Doctor } from "@/lib/types"
 
 export default function HomePage() {
   return (
@@ -12,7 +13,7 @@ export default function HomePage() {
           Search our doctors, compare timings, and book your serial in minutes.
         </p>
       </div>
-      <DoctorDirectory doctors={doctors} />
+      <DoctorDirectory doctors={doctors as Doctor[]} />
     </>
   )
 }

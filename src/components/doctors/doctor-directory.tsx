@@ -25,6 +25,11 @@ const specialties = [
   "General Practice",
   "Pulmonology",
   "Dermatology",
+  "Neurology",
+  "Ophthalmology",
+  "Orthopedics",
+  "Pediatrics",
+  "Urology",
 ]
 
 const sortOptions = [
@@ -39,6 +44,7 @@ const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
 
 export function DoctorDirectory({ doctors }: { doctors: Doctor[] }) {
   const [search, setSearch] = useState("")
+  const [searchBy, setSearchBy] = useState("doctor")
   const [specialty, setSpecialty] = useState("all")
   const [day, setDay] = useState("all")
   const [sort, setSort] = useState("recommended")
@@ -46,13 +52,12 @@ export function DoctorDirectory({ doctors }: { doctors: Doctor[] }) {
   const filtered = useMemo(() => {
     const query = search.trim().toLowerCase()
     const result = doctors.filter((doctor) => {
-      if (
-        query &&
-        !`${doctor.firstName} ${doctor.lastName} ${doctor.clinic} ${doctor.specialty}`
-          .toLowerCase()
-          .includes(query)
-      ) {
-        return false
+      if (query) {
+        const haystack =
+          searchBy === "clinic"
+            ? doctor.clinic
+            : `${doctor.firstName} ${doctor.lastName}`
+        if (!haystack.toLowerCase().includes(query)) return false
       }
       if (specialty !== "all" && doctor.specialty !== specialty) return false
       if (day !== "all" && !doctor.availability.includes(day)) return false
@@ -73,7 +78,7 @@ export function DoctorDirectory({ doctors }: { doctors: Doctor[] }) {
       default:
         return result
     }
-  }, [doctors, search, specialty, day, sort])
+  }, [doctors, search, searchBy, specialty, day, sort])
 
   return (
     <div className="flex flex-col gap-6">
@@ -84,23 +89,41 @@ export function DoctorDirectory({ doctors }: { doctors: Doctor[] }) {
               <FieldLabel className="text-label-caps uppercase tracking-widest">
                 Search
               </FieldLabel>
-              <InputGroup>
-                <InputGroupAddon>
-                  <Search />
-                </InputGroupAddon>
-                <InputGroupInput
-                  placeholder="Doctor name, clinic, or specialty..."
-                  value={search}
-                  onChange={(event) => setSearch(event.target.value)}
-                />
-              </InputGroup>
+              <div className="flex w-full flex-col gap-2 sm:flex-row">
+                <Select value={searchBy} onValueChange={setSearchBy}>
+                  <SelectTrigger className="data-[size=default]:h-11 h-11 w-full text-body-md sm:w-36">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectItem value="doctor">Doctor Name</SelectItem>
+                      <SelectItem value="clinic">Clinic Name</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+                <InputGroup className="h-11 flex-1">
+                  <InputGroupAddon>
+                    <Search />
+                  </InputGroupAddon>
+                  <InputGroupInput
+                    className="h-full"
+                    placeholder={
+                      searchBy === "clinic"
+                        ? "Search by clinic name..."
+                        : "Search by doctor name..."
+                    }
+                    value={search}
+                    onChange={(event) => setSearch(event.target.value)}
+                  />
+                </InputGroup>
+              </div>
             </Field>
             <Field className="gap-2 lg:col-span-3">
               <FieldLabel className="text-label-caps uppercase tracking-widest">
                 Specialty
               </FieldLabel>
               <Select value={specialty} onValueChange={setSpecialty}>
-                <SelectTrigger className="h-11 text-body-md">
+                <SelectTrigger className="data-[size=default]:h-11 h-11 text-body-md">
                   <SelectValue placeholder="All Specialties" />
                 </SelectTrigger>
                 <SelectContent>
@@ -115,12 +138,12 @@ export function DoctorDirectory({ doctors }: { doctors: Doctor[] }) {
                 </SelectContent>
               </Select>
             </Field>
-            <Field className="gap-2 lg:col-span-2">
+            <Field className="gap-2 lg:col-span-4">
               <FieldLabel className="text-label-caps uppercase tracking-widest">
                 Sort by
               </FieldLabel>
               <Select value={sort} onValueChange={setSort}>
-                <SelectTrigger className="h-11 text-body-md">
+                <SelectTrigger className="data-[size=default]:h-11 h-11 text-body-md">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -134,32 +157,34 @@ export function DoctorDirectory({ doctors }: { doctors: Doctor[] }) {
                 </SelectContent>
               </Select>
             </Field>
-            <Field className="gap-2 lg:col-span-2">
-              <FieldLabel className="text-label-caps uppercase tracking-widest">
-                Available On
-              </FieldLabel>
-              <ToggleGroup
-                type="single"
-                value={day}
-                onValueChange={(value) => setDay(value ?? "all")}
-                className="flex w-fit flex-wrap gap-2"
-              >
-                <ToggleGroupItem
-                  value="all"
-                  className="h-11 w-10 rounded-lg border text-label-caps data-active:border-primary data-active:bg-primary data-active:text-primary-foreground"
+            <Field className="gap-2 lg:col-span-12">
+              <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-3">
+                <FieldLabel className="text-label-caps uppercase tracking-widest lg:shrink-0">
+                  Available On
+                </FieldLabel>
+                <ToggleGroup
+                  type="single"
+                  value={day}
+                  onValueChange={(value) => setDay(value ?? "all")}
+                  className="flex w-fit flex-wrap gap-2"
                 >
-                  Any
-                </ToggleGroupItem>
-                {days.map((item) => (
                   <ToggleGroupItem
-                    key={item}
-                    value={item}
-                    className="h-11 w-10 rounded-lg border text-label-caps data-active:border-primary data-active:bg-primary data-active:text-primary-foreground"
+                    value="all"
+                    className="h-11 rounded-lg border px-3 text-label-caps data-active:border-primary data-active:bg-primary data-active:text-primary-foreground"
                   >
-                    {item.slice(0, 3)}
+                    Any
                   </ToggleGroupItem>
-                ))}
-              </ToggleGroup>
+                  {days.map((item) => (
+                    <ToggleGroupItem
+                      key={item}
+                      value={item}
+                      className="h-11 rounded-lg border px-3 text-label-caps data-active:border-primary data-active:bg-primary data-active:text-primary-foreground"
+                    >
+                      {item}
+                    </ToggleGroupItem>
+                  ))}
+                </ToggleGroup>
+              </div>
             </Field>
           </div>
         </CardContent>
@@ -194,6 +219,7 @@ export function DoctorDirectory({ doctors }: { doctors: Doctor[] }) {
               className="mt-2"
               onClick={() => {
                 setSearch("")
+                setSearchBy("doctor")
                 setSpecialty("all")
                 setDay("all")
                 setSort("recommended")

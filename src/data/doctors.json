@@ -1,6 +1,8 @@
 [
   {
+    "gender": "female",
     "id": "doc-001",
+    "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&h=400&q=80",
     "firstName": "Eleanor",
     "lastName": "Whitfield",
     "specialty": "Cardiology",
@@ -9,7 +11,11 @@
     "email": "e.whitfield@meridianhealth.org",
     "departmentId": "dept-cardio",
     "room": "A-204",
-    "availability": ["Monday", "Wednesday", "Friday"],
+    "availability": [
+      "Monday",
+      "Wednesday",
+      "Friday"
+    ],
     "patientsCount": 128,
     "rating": 4.9,
     "clinic": "HeartCare General Hospital",
@@ -30,7 +36,9 @@
     "slotEnd": "16:00"
   },
   {
+    "gender": "male",
     "id": "doc-002",
+    "image": "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=400&h=400&q=80",
     "firstName": "Julian",
     "lastName": "Martínez",
     "specialty": "Endocrinology",
@@ -39,7 +47,11 @@
     "email": "j.martinez@meridianhealth.org",
     "departmentId": "dept-endo",
     "room": "B-118",
-    "availability": ["Tuesday", "Thursday", "Saturday"],
+    "availability": [
+      "Tuesday",
+      "Thursday",
+      "Saturday"
+    ],
     "patientsCount": 96,
     "rating": 4.8,
     "clinic": "City Brain & Spine Center",
@@ -60,7 +72,9 @@
     "slotEnd": "13:00"
   },
   {
+    "gender": "female",
     "id": "doc-003",
+    "image": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&h=400&q=80",
     "firstName": "Nadia",
     "lastName": "Haddad",
     "specialty": "General Practice",
@@ -69,7 +83,11 @@
     "email": "n.haddad@meridianhealth.org",
     "departmentId": "dept-gp",
     "room": "A-103",
-    "availability": ["Monday", "Tuesday", "Thursday"],
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Thursday"
+    ],
     "patientsCount": 210,
     "rating": 4.7,
     "clinic": "Meridian Wellness Clinic",
@@ -90,7 +108,9 @@
     "slotEnd": "16:00"
   },
   {
+    "gender": "male",
     "id": "doc-004",
+    "image": "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=400&h=400&q=80",
     "firstName": "Robert",
     "lastName": "Kim",
     "specialty": "Pulmonology",
@@ -99,7 +119,10 @@
     "email": "r.kim@meridianhealth.org",
     "departmentId": "dept-pulm",
     "room": "C-305",
-    "availability": ["Wednesday", "Friday"],
+    "availability": [
+      "Wednesday",
+      "Friday"
+    ],
     "patientsCount": 74,
     "rating": 4.9,
     "clinic": "Pulmonary Care Institute",
@@ -120,7 +143,9 @@
     "slotEnd": "01:00"
   },
   {
+    "gender": "female",
     "id": "doc-005",
+    "image": "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=400&h=400&q=80",
     "firstName": "Grace",
     "lastName": "Adebayo",
     "specialty": "Dermatology",
@@ -129,7 +154,11 @@
     "email": "g.adebayo@meridianhealth.org",
     "departmentId": "dept-derm",
     "room": "B-212",
-    "availability": ["Monday", "Thursday", "Friday"],
+    "availability": [
+      "Monday",
+      "Thursday",
+      "Friday"
+    ],
     "patientsCount": 152,
     "rating": 4.6,
     "clinic": "DermaCare Studio",
@@ -148,5 +177,185 @@
     "days": "Mon · Thu · Fri",
     "slotStart": "14:00",
     "slotEnd": "20:00"
+  },
+  {
+    "gender": "male",
+    "id": "doc-006",
+    "image": "https://images.unsplash.com/photo-1615461066841-6116e61058f4?auto=format&fit=crop&w=400&h=400&q=80",
+    "firstName": "Marcus",
+    "lastName": "Chen",
+    "specialty": "Neurology",
+    "title": "MD, FAAN",
+    "phone": "+1 415-555-0106",
+    "email": "m.chen@meridianhealth.org",
+    "departmentId": "dept-neuro",
+    "room": "D-102",
+    "availability": [
+      "Tuesday",
+      "Thursday",
+      "Saturday"
+    ],
+    "patientsCount": 118,
+    "rating": 4.8,
+    "clinic": "Bay Area Neurological Associates",
+    "fee": 175,
+    "nextAvailable": "Today, 3:30 PM",
+    "videoConsult": true,
+    "description": "Dr. Marcus Chen is a neurologist specializing in headache disorders, epilepsy, and stroke rehabilitation. He pairs advanced diagnostics with clear, step-by-step treatment plans that help patients understand their condition and recovery.",
+    "qualifications": [
+      "MD — University of Pennsylvania School of Medicine",
+      "FAAN — Fellow, American Academy of Neurology",
+      "Fellowship in Epilepsy & Clinical Neurophysiology",
+      "Stroke Program Director, 8+ years"
+    ],
+    "estimatedTurnTime": "~30 min",
+    "timings": "10:00 AM – 4:00 PM",
+    "days": "Tue · Thu · Sat",
+    "slotStart": "10:00",
+    "slotEnd": "16:00"
+  },
+  {
+    "gender": "female",
+    "id": "doc-007",
+    "image": "https://images.unsplash.com/photo-1611834905996-b30d97dcf651?auto=format&fit=crop&w=400&h=400&q=80",
+    "firstName": "Laila",
+    "lastName": "Rahman",
+    "specialty": "Pediatrics",
+    "title": "MD, FAAP",
+    "phone": "+1 415-555-0107",
+    "email": "l.rahman@meridianhealth.org",
+    "departmentId": "dept-peds",
+    "room": "A-310",
+    "availability": [
+      "Monday",
+      "Tuesday",
+      "Thursday"
+    ],
+    "patientsCount": 187,
+    "rating": 4.9,
+    "clinic": "Little Star Pediatric Clinic",
+    "fee": 110,
+    "nextAvailable": "Tomorrow, 9:30 AM",
+    "videoConsult": true,
+    "description": "Dr. Laila Rahman is a pediatrician who cares for newborns through teens, from routine well-child visits to developmental and behavioral concerns. Parents love her calm, patient approach and how she explains things in a way kids actually understand.",
+    "qualifications": [
+      "MD — Stanford University School of Medicine",
+      "FAAP — Fellow, American Academy of Pediatrics",
+      "Residency in Pediatrics, Lucile Packard Children's Hospital",
+      "Certified in Pediatric Advanced Life Support"
+    ],
+    "estimatedTurnTime": "~20 min",
+    "timings": "9:00 AM – 3:00 PM",
+    "days": "Mon · Tue · Thu",
+    "slotStart": "09:00",
+    "slotEnd": "15:00"
+  },
+  {
+    "gender": "male",
+    "id": "doc-008",
+    "image": "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?auto=format&fit=crop&w=400&h=400&q=80",
+    "firstName": "David",
+    "lastName": "Osei",
+    "specialty": "Orthopedics",
+    "title": "MD, FAAOS",
+    "phone": "+1 415-555-0108",
+    "email": "d.osei@meridianhealth.org",
+    "departmentId": "dept-ortho",
+    "room": "C-118",
+    "availability": [
+      "Monday",
+      "Thursday",
+      "Friday"
+    ],
+    "patientsCount": 92,
+    "rating": 4.7,
+    "clinic": "Joint & Spine Orthopedic Center",
+    "fee": 190,
+    "nextAvailable": "Fri, 2:00 PM",
+    "videoConsult": false,
+    "description": "Dr. David Osei is an orthopedic surgeon focused on sports injuries, joint replacement, and minimally invasive spine care. He emphasizes nonsurgical options first and works closely with physiotherapists to keep patients moving.",
+    "qualifications": [
+      "MD — Vanderbilt University School of Medicine",
+      "FAAOS — Fellow, American Academy of Orthopaedic Surgeons",
+      "Fellowship in Sports Medicine & Arthroscopy",
+      "Team physician, Bay Area athletics"
+    ],
+    "estimatedTurnTime": "~25 min",
+    "timings": "12:00 PM – 6:00 PM",
+    "days": "Mon · Thu · Fri",
+    "slotStart": "12:00",
+    "slotEnd": "18:00"
+  },
+  {
+    "gender": "female",
+    "id": "doc-009",
+    "image": "https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&w=400&h=400&q=80",
+    "firstName": "Ingrid",
+    "lastName": "Sørensen",
+    "specialty": "Ophthalmology",
+    "title": "MD, FACS",
+    "phone": "+1 415-555-0109",
+    "email": "i.sorensen@meridianhealth.org",
+    "departmentId": "dept-ophth",
+    "room": "B-204",
+    "availability": [
+      "Wednesday",
+      "Friday",
+      "Saturday"
+    ],
+    "patientsCount": 105,
+    "rating": 4.8,
+    "clinic": "ClearView Eye Institute",
+    "fee": 145,
+    "nextAvailable": "Today, 5:30 PM",
+    "videoConsult": false,
+    "description": "Dr. Ingrid Sørensen is an ophthalmologist specializing in cataract surgery, glaucoma management, and LASIK consultation. Her surgical precision and gentle bedside manner make her a trusted choice for patients of all ages.",
+    "qualifications": [
+      "MD — University of Michigan Medical School",
+      "FACS — Fellow, American College of Surgeons",
+      "Fellowship in Glaucoma & Advanced Anterior Segment Surgery",
+      "5,000+ successful cataract procedures"
+    ],
+    "estimatedTurnTime": "~20 min",
+    "timings": "3:00 PM – 9:00 PM",
+    "days": "Wed · Fri · Sat",
+    "slotStart": "15:00",
+    "slotEnd": "21:00"
+  },
+  {
+    "gender": "male",
+    "id": "doc-010",
+    "image": "https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=400&h=400&q=80",
+    "firstName": "Hassan",
+    "lastName": "Al-Farsi",
+    "specialty": "Urology",
+    "title": "MD, FACS",
+    "phone": "+1 415-555-0110",
+    "email": "h.alfarsi@meridianhealth.org",
+    "departmentId": "dept-uro",
+    "room": "C-207",
+    "availability": [
+      "Monday",
+      "Wednesday",
+      "Thursday"
+    ],
+    "patientsCount": 68,
+    "rating": 4.6,
+    "clinic": "Urology Care Specialists",
+    "fee": 160,
+    "nextAvailable": "Mon, 11:00 AM",
+    "videoConsult": true,
+    "description": "Dr. Hassan Al-Farsi is a urologist treating kidney stones, prostate health, and urinary tract conditions. He is known for his thorough evaluations and for offering the latest minimally invasive treatment options.",
+    "qualifications": [
+      "MD — University of Chicago Pritzker School of Medicine",
+      "FACS — Fellow, American College of Surgeons",
+      "Fellowship in Endourology & Minimally Invasive Surgery",
+      "Robotic surgery certified"
+    ],
+    "estimatedTurnTime": "~25 min",
+    "timings": "8:00 AM – 2:00 PM",
+    "days": "Mon · Wed · Thu",
+    "slotStart": "08:00",
+    "slotEnd": "14:00"
   }
 ]

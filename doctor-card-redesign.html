@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Doctor Card — Redesign Preview</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            DEFAULT: '#0f6e6a',
+            50: '#f0f9f8', 100: '#d5f0ef', 200: '#aee2df', 300: '#7acbcc',
+            400: '#4db0b2', 500: '#329496', 600: '#277678', 700: '#225f61',
+            800: '#1e4e50', 900: '#1b4142', 950: '#0d2526',
+          },
+          surface: { DEFAULT: '#faf9f7', dim: '#dadad8', bright: '#ffffff', container: '#ecebec' },
+          text: { primary: '#1a1a1a', secondary: '#4b5563', muted: '#6b7280' },
+        },
+        fontFamily: { heading: ['Fraunces', 'serif'], body: ['Inter', 'sans-serif'] },
+        borderRadius: { custom: '8px' },
+      }
+    }
+  }
+</script>
+<style>
+  body { background-color: theme('colors.surface.DEFAULT'); color: theme('colors.text.primary'); }
+  .font-heading { font-family: theme('fontFamily.heading'); }
+  .font-body { font-family: theme('fontFamily.body'); }
+
+  /* Signature element: the chart-tab spine + notch rating badge */
+  .chart-card {
+    position: relative;
+    padding-left: 6px;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+  .chart-card::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: linear-gradient(180deg, theme('colors.brand.400'), theme('colors.brand.700'));
+    border-radius: 8px 0 0 8px;
+  }
+  .chart-card:hover {
+    box-shadow: 0 16px 36px -14px rgba(15, 110, 106, 0.28);
+    transform: translateY(-3px);
+  }
+  .rating-notch {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 100%, 0 70%);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .chart-card { transition: none !important; transform: none !important; }
+  }
+</style>
+</head>
+<body class="font-body antialiased">
+
+<div class="max-w-6xl mx-auto px-6 py-14">
+
+<div class="mb-10">
+  <span class="text-xs font-bold uppercase tracking-[0.2em] text-brand">Component Preview</span>
+  <h1 class="font-heading text-3xl font-bold mt-2">Doctor card — redesign</h1>
+  <p class="text-text-secondary mt-1 text-sm max-w-xl">Same fields as the current card: name, specialty, title, clinic, rating, timings, fee, chamber, visiting days. Composition and hierarchy are different.</p>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+  <!-- BEGIN: Doctor Card 1 -->
+  <div class="chart-card bg-surface-bright rounded-custom border border-surface-dim overflow-hidden flex flex-col">
+    <div class="flex flex-col flex-1">
+      <!-- Photo + notch rating -->
+      <div class="relative">
+        <div class="h-40 w-full overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&q=80" alt="Dr. Julian Martínez" class="w-full h-full object-cover object-top"/>
+        </div>
+        <div class="rating-notch absolute bottom-0 right-0 bg-brand text-white px-4 pt-2 pb-1.5 flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="text-sm font-bold">4.8</span>
+        </div>
+      </div>
+
+      <div class="p-5 flex flex-col gap-3 flex-1">
+        <div>
+          <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-brand mb-1">Endocrinology</p>
+          <h3 class="font-heading text-xl font-semibold leading-snug">Dr. Martínez</h3>
+          <p class="text-xs text-text-muted mt-0.5">MD, FACP</p>
+        </div>
+
+        <div class="flex items-center gap-1.5 text-xs text-text-secondary">
+          <span class="material-symbols-outlined text-sm text-brand">location_on</span>
+          City Brain &amp; Spine Center
+        </div>
+
+        <!-- Stat strip: single row, hairline dividers, no boxed grid -->
+        <div class="flex items-stretch mt-1 rounded-custom bg-surface-container/60 overflow-hidden">
+          <div class="flex-1 px-3 py-2.5 flex flex-col gap-0.5 border-r border-surface-dim">
+            <span class="text-[9px] font-semibold uppercase tracking-wider text-text-muted">Timings</span>
+            <span class="text-xs font-bold text-text-primary">6–1 PM</span>
+          </div>
+          <div class="flex-1 px-3 py-2.5 flex flex-col gap-0.5 border-r border-surface-dim">
+            <span class="text-[9px] font-semibold uppercase tracking-wider text-text-muted">Fee</span>
+            <span class="text-xs font-bold text-brand">$180</span>
+          </div>
+          <div class="flex-1 px-3 py-2.5 flex flex-col gap-0.5 border-r border-surface-dim">
+            <span class="text-[9px] font-semibold uppercase tracking-wider text-text-muted">Room</span>
+            <span class="text-xs font-bold text-text-primary">B-118</span>
+          </div>
+          <div class="flex-1 px-3 py-2.5 flex flex-col gap-0.5">
+            <span class="text-[9px] font-semibold uppercase tracking-wider text-text-muted">Days</span>
+            <span class="text-xs font-bold text-text-primary">T/Th/S</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer actions -->
+      <div class="flex gap-2 p-4 pt-0">
+        <a href="#" class="flex-1 h-10 rounded-custom border border-surface-dim text-text-secondary text-[11px] font-bold uppercase tracking-widest flex items-center justify-center hover:border-brand hover:text-brand transition-colors">
+          Read his blogs
+        </a>
+        <a href="#" class="flex-1 h-10 rounded-custom bg-brand text-white text-[11px] font-bold uppercase tracking-widest flex items-center justify-center hover:bg-brand-600 transition-colors">
+          Book appointment
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- END: Doctor Card 1 -->
+
+  <!-- BEGIN: Doctor Card 2 -->
+  <div class="chart-card bg-surface-bright rounded-custom border border-surface-dim overflow-hidden flex flex-col">
+    <div class="flex flex-col flex-1">
+      <div class="relative">
+        <div class="h-40 w-full overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80" alt="Dr. Priya Nair" class="w-full h-full object-cover object-top"/>
+        </div>
+        <div class="rating-notch absolute bottom-0 right-0 bg-brand text-white px-4 pt-2 pb-1.5 flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="text-sm font-bold">4.9</span>
+        </div>
+      </div>
+
+      <div class="p-5 flex flex-col gap-3 flex-1">
+        <div>
+          <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-brand mb-1">Cardiology</p>
+          <h3 class="font-heading text-xl font-semibold leading-snug">Dr. Nair</h3>
+          <p class="text-xs text-text-muted mt-0.5">MD, FACC</p>
+        </div>
+
+        <div class="flex items-center gap-1.5 text-xs text-text-secondary">
+          <span class="material-symbols-outlined text-sm text-brand">location_on</span>
+          Riverside Heart Institute
+        </div>
+
+        <div class="flex items-stretch mt-1 rounded-custom bg-surface-container/60 overflow-hidden">
+          <div class="flex-1 px-3 py-2.5 flex flex-col gap-0.5 border-r border-surface-dim">
+            <span class="text-[9px] font-semibold uppercase tracking-wider text-text-muted">Timings</span>
+            <span class="text-xs font-bold text-text-primary">2–7 PM</span>
+          </div>
+          <div class="flex-1 px-3 py-2.5 flex flex-col gap-0.5 border-r border-surface-dim">
+            <span class="text-[9px] font-semibold uppercase tracking-wider text-text-muted">Fee</span>
+            <span class="text-xs font-bold text-brand">$220</span>
+          </div>
+          <div class="flex-1 px-3 py-2.5 flex flex-col gap-0.5 border-r border-surface-dim">
+            <span class="text-[9px] font-semibold uppercase tracking-wider text-text-muted">Room</span>
+            <span class="text-xs font-bold text-text-primary">A-204</span>
+          </div>
+          <div class="flex-1 px-3 py-2.5 flex flex-col gap-0.5">
+            <span class="text-[9px] font-semibold uppercase tracking-wider text-text-muted">Days</span>
+            <span class="text-xs font-bold text-text-primary">M/W/F</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex gap-2 p-4 pt-0">
+        <a href="#" class="flex-1 h-10 rounded-custom border border-surface-dim text-text-secondary text-[11px] font-bold uppercase tracking-widest flex items-center justify-center hover:border-brand hover:text-brand transition-colors">
+          Read her blogs
+        </a>
+        <a href="#" class="flex-1 h-10 rounded-custom bg-brand text-white text-[11px] font-bold uppercase tracking-widest flex items-center justify-center hover:bg-brand-600 transition-colors">
+          Book appointment
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- END: Doctor Card 2 -->
+
+  <!-- BEGIN: Doctor Card 3 -->
+  <div class="chart-card bg-surface-bright rounded-custom border border-surface-dim overflow-hidden flex flex-col">
+    <div class="flex flex-col flex-1">
+      <div class="relative">
+        <div class="h-40 w-full overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80" alt="Dr. Sofia Reyes" class="w-full h-full object-cover object-top"/>
+        </div>
+        <div class="rating-notch absolute bottom-0 right-0 bg-brand text-white px-4 pt-2 pb-1.5 flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="text-sm font-bold">4.7</span>
+        </div>
+      </div>
+
+      <div class="p-5 flex flex-col gap-3 flex-1">
+        <div>
+          <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-brand mb-1">Pediatrics</p>
+          <h3 class="font-heading text-xl font-semibold leading-snug">Dr. Reyes</h3>
+          <p class="text-xs text-text-muted mt-0.5">MD, FAAP</p>
+        </div>
+
+        <div class="flex items-center gap-1.5 text-xs text-text-secondary">
+          <span class="material-symbols-outlined text-sm text-brand">location_on</span>
+          Sunnyvale Children's Clinic
+        </div>
+
+        <div class="flex items-stretch mt-1 rounded-custom bg-surface-container/60 overflow-hidden">
+          <div class="flex-1 px-3 py-2.5 flex flex-col gap-0.5 border-r border-surface-dim">
+            <span class="text-[9px] font-semibold uppercase tracking-wider text-text-muted">Timings</span>
+            <span class="text-xs font-bold text-text-primary">9–3 PM</span>
+          </div>
+          <div class="flex-1 px-3 py-2.5 flex flex-col gap-0.5 border-r border-surface-dim">
+            <span class="text-[9px] font-semibold uppercase tracking-wider text-text-muted">Fee</span>
+            <span class="text-xs font-bold text-brand">$150</span>
+          </div>
+          <div class="flex-1 px-3 py-2.5 flex flex-col gap-0.5 border-r border-surface-dim">
+            <span class="text-[9px] font-semibold uppercase tracking-wider text-text-muted">Room</span>
+            <span class="text-xs font-bold text-text-primary">C-012</span>
+          </div>
+          <div class="flex-1 px-3 py-2.5 flex flex-col gap-0.5">
+            <span class="text-[9px] font-semibold uppercase tracking-wider text-text-muted">Days</span>
+            <span class="text-xs font-bold text-text-primary">Daily</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex gap-2 p-4 pt-0">
+        <a href="#" class="flex-1 h-10 rounded-custom border border-surface-dim text-text-secondary text-[11px] font-bold uppercase tracking-widest flex items-center justify-center hover:border-brand hover:text-brand transition-colors">
+          Read her blogs
+        </a>
+        <a href="#" class="flex-1 h-10 rounded-custom bg-brand text-white text-[11px] font-bold uppercase tracking-widest flex items-center justify-center hover:bg-brand-600 transition-colors">
+          Book appointment
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- END: Doctor Card 3 -->
+
+</div>
+</div>
+</body>
+</html>

@@ -29,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${epilogue.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${epilogue.variable} ${geistMono.variable} h-full overflow-x-clip antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <TooltipProvider delayDuration={0}>{children}</TooltipProvider>

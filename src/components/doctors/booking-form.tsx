@@ -92,7 +92,7 @@ export function BookingForm({ doctor }: { doctor: Doctor }) {
 
   return (
     <>
-      <Card className="border-primary/20">
+      <Card>
         <CardHeader className="border-b border-border">
           <CardTitle className="font-heading text-headline-md">
             Book an Appointment

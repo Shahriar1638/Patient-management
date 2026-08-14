@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { CalendarClock, DoorOpen, MapPin, Star } from "lucide-react"
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
@@ -10,6 +10,7 @@ import type { Doctor } from "@/lib/types"
 
 export function DoctorCard({ doctor }: { doctor: Doctor }) {
   const detailsHref = `/doctors/${doctor.id}`
+  const blogsHref = `/blogs?doctor=${doctor.id}`
 
   return (
     <Card className="flex flex-col transition-colors hover:border-primary/40">
@@ -17,6 +18,13 @@ export function DoctorCard({ doctor }: { doctor: Doctor }) {
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-4">
             <Avatar className="size-24 rounded-xl text-lg">
+              {doctor.image && (
+                <AvatarImage
+                  src={doctor.image}
+                  alt={`Dr. ${doctor.firstName} ${doctor.lastName}`}
+                  className="rounded-xl"
+                />
+              )}
               <AvatarFallback className="rounded-xl bg-muted font-semibold">
                 {getInitials(doctor.firstName, doctor.lastName)}
               </AvatarFallback>
@@ -82,7 +90,9 @@ export function DoctorCard({ doctor }: { doctor: Doctor }) {
           size="lg"
           className="h-11 flex-1 text-xs font-bold uppercase tracking-widest"
         >
-          <Link href={detailsHref}>View Profile</Link>
+          <Link href={blogsHref}>
+            Read {doctor.gender === "female" ? "her" : "his"} blogs
+          </Link>
         </Button>
         <Button
           asChild

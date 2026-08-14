@@ -1,5 +1,7 @@
 export type Doctor = {
   id: string
+  image?: string
+  gender: "male" | "female"
   firstName: string
   lastName: string
   specialty: string
@@ -37,4 +39,18 @@ export type Booking = {
   room: string
   clinic: string
   estimatedTurnTime: string
+}
+
+export type BlogPost = {
+  id: string
+  doctorId: string
+  title: string
+  excerpt: string
+  category: string
+  author: string
+  authorTitle: string
+  date: string
+  readTime: string
+  image: string
+  featured: boolean
 }
